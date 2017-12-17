@@ -1,5 +1,7 @@
 <?php
 
+namespace Vendor\Core;
+
 class Router
 {
     
@@ -30,7 +32,7 @@ class Router
                     if(is_string($key)){
                         $route[$key] = $val;
                     }
-                } 
+                }
                 if (!isset($route['action'])){
                     $route['action'] = 'index';
                 }
@@ -45,10 +47,33 @@ class Router
     public static function dispatch($url)
     {
         if(self::matchRoute($url)){
-            debug(self::$route);
+            $controller = 'App\\Controllers\\' . self::upperCamelCase(self::$route['controller']);
+            if(class_exists($controller)){
+                $cObj = new $controller;
+                $action = self::lowerCamelCase(self::$route['action']) . "Action";
+                if(method_exists($cObj, $action)){
+                    debug($action);
+                    $cObj->$action();
+                } else {
+                    echo "<br>Метод <b>$controller::$action</b> не найден";
+                }
+            } else {
+                echo "Контроллер <b>$controller</b> не найден";
+            }
         } else {
             http_response_code(404);
             include '404.html';
         }
+    }
+    
+    protected static function upperCamelCase($name)
+    {        
+        return str_replace(' ', '',ucwords(str_replace('-',' ', $name)));
+    }
+
+    protected static function lowerCamelCase($name)
+    {        
+        // return str_replace(' ', '',ucwords(str_replace('-',' ', $name)));
+        return lcfirst(self::upperCamelCase($name));
     }
 }
