@@ -36,6 +36,7 @@ class Router
                 if (!isset($route['action'])){
                     $route['action'] = 'index';
                 }
+                $route['controller'] = self::upperCamelCase($route['controller']);
                 self::$route = $route;
                 
                 return true;
@@ -46,34 +47,49 @@ class Router
     
     public static function dispatch($url)
     {
-        if(self::matchRoute($url)){
-            $controller = 'App\\Controllers\\' . self::upperCamelCase(self::$route['controller']);
-            if(class_exists($controller)){
-                $cObj = new $controller;
-                $action = self::lowerCamelCase(self::$route['action']) . "Action";
-                if(method_exists($cObj, $action)){
-                    debug($action);
-                    $cObj->$action();
-                } else {
-                    echo "<br>Метод <b>$controller::$action</b> не найден";
+        $url = self::removeQueryString($url);
+        
+        try{
+            if(self::matchRoute($url)){
+                $controller = 'App\\Controllers\\' . self::upperCamelCase(self::$route['controller']);
+                
+                if(class_exists($controller)){
+                    $cObj = new $controller(self::$route);
+                    $action = self::lowerCamelCase(self::$route['action']) . "Action";
+                    if(method_exists($cObj, $action)){
+                        $cObj->$action();
+                        $cObj->getView();
+                    }
                 }
             } else {
-                echo "Контроллер <b>$controller</b> не найден";
+                http_response_code(404);
+                include '404.html';
             }
-        } else {
-            http_response_code(404);
-            include '404.html';
+        } catch (Exception $e) {
+            echo $e->getMessage();
         }
     }
     
     protected static function upperCamelCase($name)
-    {        
+    {
         return str_replace(' ', '',ucwords(str_replace('-',' ', $name)));
     }
-
+    
     protected static function lowerCamelCase($name)
-    {        
+    {
         // return str_replace(' ', '',ucwords(str_replace('-',' ', $name)));
         return lcfirst(self::upperCamelCase($name));
+    }
+    
+    public static function removeQueryString($url)
+    {
+        if($url){
+            $param = explode('&', $url, 2);
+            if(false === strpos($param[0], '=')) {
+                return rtrim($param[0], '/');
+            } else {
+                return '';
+            }
+        }
     }
 }

@@ -2,14 +2,14 @@
 
 namespace App\Controllers;
 
-class Main
+class Main extends App
 {
     public function indexAction()
     {
-        echo "Создан объект класса " . __CLASS__ . " и выполнен метод 'index'";
+        echo "Создан объект класса " . __CLASS__ . " и выполнен метод " . __METHOD__;
     }
     public function testAction()
     {
-        echo "Создан объект класса " . __CLASS__ . " и выполнен метод 'test'";
+        echo "Создан объект класса " . __CLASS__ . " и выполнен метод " . __METHOD__;
     }
 }
