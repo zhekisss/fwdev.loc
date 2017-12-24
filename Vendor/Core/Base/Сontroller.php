@@ -7,9 +7,34 @@ use Vendor\Core\Base\View;
 abstract class Сontroller
 {
     
+    /**
+     * Путь
+     *
+     * @var array
+     */
     public $route = [];
+
+    /**
+     * Вид
+     *
+     * @var string
+     */
     public $view;
+
+    /**
+     * Шаблон
+     *
+     * @var string
+     */
     public $layout;
+
+    /**
+     * Переменные в вид
+     * пользовательские данные
+     *
+     * @var array
+     */
+    public $vars;
 
     public function __construct($route)
     {
@@ -19,7 +44,12 @@ abstract class Сontroller
 
     public function getView()
     {
-        $vObj = new View($this->route,$this->layout,$this->view);
-        $vObj->render();
+        $vObj = new View($this->route, $this->layout,$this->view);
+        $vObj->render($this->vars);
+    }
+
+    public function set($vars)
+    {
+        $this->vars = $vars;
     }
 }

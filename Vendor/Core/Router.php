@@ -51,7 +51,7 @@ class Router
         
         try{
             if(self::matchRoute($url)){
-                $controller = 'App\\Controllers\\' . self::upperCamelCase(self::$route['controller']);
+                $controller = 'App\\Controllers\\' . self::upperCamelCase(self::$route['controller']) . 'Controller';
                 
                 if(class_exists($controller)){
                     $cObj = new $controller(self::$route);
