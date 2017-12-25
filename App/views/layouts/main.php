@@ -7,15 +7,12 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     
-    <title>MAIN</title>
+    <title><?= $title ?></title>
 </head>
 <body>
     <h1>MAIN</h1>
 <div class="content">
     <?= $content ?>
-    <?= var_dump($name) ?>
-    <?= var_dump($colors) ?>
-    <?php var_dump($this); ?>
 </div>
 
 </body>
