@@ -10,12 +10,20 @@
     <title>Шаблон</title>
 </head>
 <body>
-    <h1>Шаблон</h1>
-<div class="content">
-    <?php $var = '1' ?>
-    <?= 'APP'?>
-    <?= $content ?>
-</div>
+    <div class="container">
+        <div class="row">
+
+            <div class="content">
+                    <h1>Шаблон</h1>
+            <?php $var = '1' ?>    
+            <?= $content ?>
+
+            <?= debug(\Vendor\Core\Db::$countSql) ?>
+            <?= debug(\Vendor\Core\Db::$queries) ?>
+        </div>
+        
+        </div>
+    </div>
 
 </body>
 </html>

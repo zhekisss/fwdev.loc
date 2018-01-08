@@ -1,11 +1,12 @@
 <h1>TEST</h1>
-<?php foreach ($pages as $pages): ?>
+<?php foreach ($posts as $post): ?>
 
-<div class="panel panel-default">
-  <div class="panel-heading">Panel heading without title</div>
+
+  <h1><?=  $post['name']; ?></h1>
+  <p><?=  $post['time']; ?></p>
   <div class="panel-body">
-    Panel content
+    <?=  $post['content']; ?>
   </div>
-</div>
+
 
 <?php endforeach; ?>

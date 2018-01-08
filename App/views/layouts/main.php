@@ -8,12 +8,26 @@
     <link rel="stylesheet" href="/css/style.css">
     
     <title><?= $title ?></title>
+
 </head>
 <body>
-    <h1>MAIN</h1>
-<div class="content">
-    <?= $content ?>
-</div>
+    <div class="container">
+        <div class="row">
+            <header>
+                <h1>MAIN</h1>
+                <h3>Header</h3>
+            </header>
+            <div class="content">
+                <?= $content ?>
 
+            <?= debug(\Vendor\Core\Db::$countSql) ?>
+            <?= debug(\Vendor\Core\Db::$queries) ?>
+
+            </div>
+            <footer>
+                <h1>FOOTER</h1>
+            </footer>
+        </div>
+    </div>
 </body>
 </html>

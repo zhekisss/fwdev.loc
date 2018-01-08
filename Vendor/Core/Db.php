@@ -7,6 +7,10 @@ class Db
     protected $pdo;
     
     protected static $instance;
+
+    public static $countSql = 0;
+
+    public static $queries = [];
     
     protected function __construct()
     {
@@ -28,16 +32,20 @@ class Db
         return self::$instance;
     }
     
-    public function execute($sql)
+    public function execute($sql, $params = [])
     {
+        self::$countSql++;
+        self::$queries[] = $sql;
         $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute();
+        return $stmt->execute($params);
     }
     
-    public function query($sql)
+    public function query($sql, $params = [])
     {
+        self::$countSql++;
+        self::$queries[] = $sql;
         $stmt = $this->pdo->prepare($sql);
-        if ($res = $stmt->execute()){
+        if ($res = $stmt->execute($params)){
             return $stmt->fetchAll();
         }
         return [];

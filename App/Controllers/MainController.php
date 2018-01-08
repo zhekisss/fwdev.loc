@@ -12,16 +12,19 @@ class MainController extends AppController
     public function indexAction()
     {
         $model = new Main;
-        // $res = $model->query("CREATE TABLE `page` SELECT * FROM project_cms.page");
-        $posts = $model->findAll();
-        var_dump($posts);
+        // $posts = $model->findAll();
+        // $posts2 = $model->findAll();
+        // $posts = $model->findOne('Здесь инки не приставали', 'name');
+        // $posts = $model->findBySql("SELECT * FROM {$model->table} WHERE content LIKE ?",['%пасх%']);
+        $posts = $model->findLike('пасх', 'content', 'page');
         $title = 'MAIN TITLE';
-        $this->set(compact("title"));
+        $this->set(compact('title','posts'));
     }
     
     public function testAction()
     {
-        $this->layout = 'test';
+        $title = 'MAIN TITLE';
+        $this->set(compact('title'));
         $this->view = 'test';
     }
 }

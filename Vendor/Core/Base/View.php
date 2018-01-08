@@ -39,7 +39,7 @@ class View
 
     public function render($vars)
     {
-        extract($vars);
+        !is_array($vars) ? : extract($vars);
         $file_view = APP . "/views/{$this->route['controller']}/{$this->view}.php";
         ob_start();
         if (is_file($file_view)) {
