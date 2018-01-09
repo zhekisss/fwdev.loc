@@ -46,6 +46,7 @@ class View
             require_once $file_view;
         } else {
             echo "<p>Не найден вид <b>{$file_view}</b></p>";
+            require_once APP . "/views/default/index.php";
         }
 
         $content = ob_get_clean();
