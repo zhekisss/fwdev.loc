@@ -27,4 +27,9 @@ class MainController extends AppController
         $this->set(compact('title'));
         $this->view = 'test';
     }
+
+    public function viewAction(Type $var = null)
+    {
+        echo 'qwerty';
+    }
 }
