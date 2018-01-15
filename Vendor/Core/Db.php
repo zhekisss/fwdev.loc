@@ -13,17 +13,21 @@ class Db
     public static $countSql = 0;
 
     public static $queries = [];
+
+    public static $rb;
     
     protected function __construct()
     {
         $db = require_once ROOT . '/config/config_db.php';
-        
         $options = [
-        \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-        \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+            \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
         ];
-
-        $this->pdo = new \PDO($db['dsn'], $db['user'], $db['pass'] , $options);        
+        
+        self::$rb = (R::setup($db['dsn'], $db['user'], $db['pass'] , $options));
+        echo !R::testConnection() ? 'Ошибка соединения с базой данных' : 'Соединение с базой данных установлено';
+        R::fancyDebug(true);
+        $this->pdo = new \PDO($db['dsn'], $db['user'], $db['pass'] , $options);
     }
     
     public static function instance()
