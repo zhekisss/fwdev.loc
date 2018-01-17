@@ -17,9 +17,6 @@
                     <h1>Шаблон</h1>
             <?php $var = '1' ?>    
             <?= $content ?>
-
-            <?= debug(\Vendor\Core\Db::$countSql) ?>
-            <?= debug(\Vendor\Core\Db::$queries) ?>
         </div>
         
         </div>

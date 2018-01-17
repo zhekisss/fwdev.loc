@@ -2,7 +2,7 @@
 
 namespace Vendor\Core;
 
-use R;
+use \R;
 
 class Db
 {
@@ -24,10 +24,10 @@ class Db
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
         ];
         
-        self::$rb = (R::setup($db['dsn'], $db['user'], $db['pass'] , $options));
-        echo !R::testConnection() ? 'Ошибка соединения с базой данных' : 'Соединение с базой данных установлено';
+        self::$rb = (\R::setup($db['dsn'], $db['user'], $db['pass'] , $options));
+        // echo !\R::testConnection() ? 'Ошибка соединения с базой данных' : 'Соединение с базой данных установлено';
         R::fancyDebug(true);
-        $this->pdo = new \PDO($db['dsn'], $db['user'], $db['pass'] , $options);
+        // $this->pdo = new \PDO($db['dsn'], $db['user'], $db['pass'] , $options);
     }
     
     public static function instance()
@@ -38,22 +38,22 @@ class Db
         return self::$instance;
     }
     
-    public function execute($sql, $params = [])
-    {
-        self::$countSql++;
-        self::$queries[] = $sql;
-        $stmt = $this->pdo->prepare($sql);
-        return $stmt->execute($params);
-    }
+    // public function execute($sql, $params = [])
+    // {
+    //     self::$countSql++;
+    //     self::$queries[] = $sql;
+    //     $stmt = $this->pdo->prepare($sql);
+    //     return $stmt->execute($params);
+    // }
     
-    public function query($sql, $params = [])
-    {
-        self::$countSql++;
-        self::$queries[] = $sql;
-        $stmt = $this->pdo->prepare($sql);
-        if ($res = $stmt->execute($params)){
-            return $stmt->fetchAll();
-        }
-        return [];
-    }
+    // public function query($sql, $params = [])
+    // {
+    //     self::$countSql++;
+    //     self::$queries[] = $sql;
+    //     $stmt = $this->pdo->prepare($sql);
+    //     if ($res = $stmt->execute($params)){
+    //         return $stmt->fetchAll();
+    //     }
+    //     return [];
+    // }
 }

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     
-    <title><?= $title ?></title>
+    <title><?= $page->name ?></title>
 
 </head>
 <body>
@@ -19,10 +19,6 @@
             </header>
             <div class="content">
                 <?= $content ?>
-
-            <?= debug(\Vendor\Core\Db::$countSql) ?>
-            <?= debug(\Vendor\Core\Db::$queries) ?>
-
             </div>
             <footer>
                 <h1>FOOTER</h1>

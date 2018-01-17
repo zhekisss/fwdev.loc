@@ -2,7 +2,7 @@
 <?php foreach ($posts as $post): ?>
 
 
-  <h1><?=  $post['name']; ?></h1>
+  <h1><?=  $post->name; ?></h1>
   <p><?=  $post['time']; ?></p>
   <div class="panel-body">
     <?=  $post['content']; ?>
