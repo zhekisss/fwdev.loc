@@ -17,7 +17,7 @@ class PageController extends AppController
     {
 
         $link = $this->route['alias'];
-var_dump(\R::testConnection());
+// var_dump(\R::testConnection());
         //if ($page = \R::findOne('page', 'link = ?', [$link])) {
         //    $this->set(compact('page'));
         //    return true;

@@ -84,14 +84,10 @@ class Router
                 $cObj = new $controller(self::$route);
                 $action = self::lowerCamelCase(self::$route['action']) . "Action";
                 if (method_exists($cObj, $action)) {
-                    if ($cObj->$action()) {
-                        $cObj->getView();
-                        return true;
-                    } else {
-                        self::errorController();
-                        return false;
-                    }
-                }                
+                    $cObj->$action();
+                    $cObj->getView();
+                    return true;
+                }
             }
         }
         self::errorController();

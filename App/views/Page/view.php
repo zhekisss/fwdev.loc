@@ -3,10 +3,6 @@
 
 
 
-  <h1><?=  $page->name; ?></h1>
-  <p><?=  $page['time']; ?></p>
-  <div class="panel-body">
-    <?=  $page['content']; ?>
     
   </div>
 
