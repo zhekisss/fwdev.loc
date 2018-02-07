@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Main;
+use Vendor\Core\Registry;
 
 class MainController extends AppController
 {
@@ -14,7 +15,8 @@ class MainController extends AppController
         \R::dispense('page');
         // $posts = R::load('page','1');
         $posts = \R::findAll('page');
-
+        $reg = Registry::getInstance('');
+        $reg->test1 = 'Vendor\Test1';
         // $model = new Main;
         // $posts = $model->findAll();
 

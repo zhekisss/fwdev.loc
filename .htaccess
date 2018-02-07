@@ -1,3 +1,4 @@
 RewriteEngine On
 AddDefaultCharset utf-8
 RewriteRule ^(.*)$ /public/$1
+
