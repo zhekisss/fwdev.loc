@@ -3,11 +3,10 @@
 namespace Vendor\Core\Base;
 
 use Vendor\Core\Base\View;
-
+use Vendor\Core\Db;
 
 abstract class Сontroller
 {
-
     public $rb;
 
     /**
@@ -43,7 +42,6 @@ abstract class Сontroller
     {
         $this->route = $route;
         $this->view = $route['action'];
-        
     }
 
     public function getView()

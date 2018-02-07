@@ -6,7 +6,6 @@ use App\Controllers\ErrorController;
 
 class Router
 {
-
     protected static $routes = [];
     protected static $route = [];
 
@@ -52,7 +51,6 @@ class Router
     {
         foreach (self::$routes as $pattern => $route) {
             if (preg_match("#$pattern#i", $url, $matches)) {
-
                 foreach ($matches as $key => $val) {
                     if (is_string($key)) {
                         $route[$key] = $val;
@@ -73,7 +71,7 @@ class Router
      * Вызывает контроллер и экшн согласно маршрута
      *
      * @param string $url
-     * 
+     *
      */
     public static function dispatch($url)
     {
@@ -93,7 +91,7 @@ class Router
         self::errorController();
         return false;
     }
-
+    
     protected static function upperCamelCase($name)
     {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $name)));
@@ -128,6 +126,5 @@ class Router
         $cObj = new ErrorController();
         $cObj->indexAction();
         $cObj->getView();
-
     }
 }

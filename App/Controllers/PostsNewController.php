@@ -12,11 +12,9 @@ class PostsNewController extends AppController
 
     public function testAction()
     {
-        
     }
 
     public function testNewPageAction()
     {
-        
     }
 }
