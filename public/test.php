@@ -1,6 +1,6 @@
 <?php
 
- require_once'rb-mysql.php';
+//  require_once 'rb-mysql.php';
  $db = require_once '../config/config_db.php';
  
  $options = [
@@ -8,8 +8,8 @@
      \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
     ];
     
-    R::setup($db['dsn'], $db['user'], $db['pass'] , $options);
-    R::fancyDebug('true');
+    // R::setup($db['dsn'], $db['user'], $db['pass'] , $options);
+    // R::fancyDebug('true');
 
 //  var_dump(R::testConnection());
 
@@ -19,5 +19,14 @@
 
 // $id = R::store($category);
 
-R::trash('category');
+// R::trash('category');
 
+$pdo = new \PDO($db['dsn'], $db['user'], $db['pass'] , $options);
+
+$sql = "SELECT * FROM `page`";
+
+$stmt = $db->prepare($sql);
+
+$stmt->execute();
+
+var_dump($stmt->fatchAll());

@@ -3,6 +3,8 @@
 use Vendor\Core\Router;
 // use App\Controllers\ErrorController;
 
+
+
 session_start();
 
 $query = rtrim($_SERVER['QUERY_STRING'], '/');
@@ -11,17 +13,19 @@ require_once '../config/config_main.php';
 
 $libs = scandir('../Vendor/libs');
 
-foreach ($libs as $key) {
 
+foreach ($libs as $key) {
+    
     switch ($key) {
         case '.':
-            continue;
+        continue;
         case '..':
-            continue;
+        continue;
         default:
-            require_once '../Vendor/libs/' . $key;
+        require_once '../Vendor/libs/' . $key;
     }
 }
+
 
 function autoload($class)
 {
@@ -33,6 +37,8 @@ spl_autoload_register(function ($class) {
     autoload($class);
 });
 
+\Timer::start();
+
 require_once APP . "/routes.php";
 
 try {
@@ -40,3 +46,5 @@ try {
 } catch (Exception $e) {
     echo $e->getMessage();
 }
+
+echo \Timer::finish();
