@@ -4,8 +4,8 @@ namespace Vendor\libs\Classes;
 
 class Test2
 {
-    public function echoHello()
+    public function __construct()
     {
-        echo 'Hello world';
+        echo '<pre>' . get_class() . '</pre>';
     }
 }

@@ -20,6 +20,7 @@ class MainController extends AppController
         $this->reg::$app->getList();
         $this->reg::$app->test->go();
         $this->reg::$app->cache->go();
+        $this->reg::$app->test2 = 'Vendor\libs\Classes\Test2';
 
         // $model = new Main;
         // $posts = $model->findAll();
