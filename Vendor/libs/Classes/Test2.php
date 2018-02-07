@@ -1,6 +1,6 @@
 <?php
 
-namespace Classes;
+namespace Vendor\libs\Classes;
 
 class Test2
 {

@@ -1,6 +1,8 @@
 <?php
 
 use Vendor\Core\Router;
+use Vendor\Core\Registry;
+
 // use App\Controllers\ErrorController;
 
 
@@ -15,15 +17,16 @@ $libs = scandir('../Vendor/libs');
 
 
 foreach ($libs as $key) {
-    
-    switch ($key) {
-        case '.':
-        continue;
-        case '..':
-        continue;
-        default:
-        require_once '../Vendor/libs/' . $key;
-    }
+    if (is_file('../Vendor/libs/' . $key)){
+        switch ($key) {
+            case '.':
+            continue;
+            case '..':
+            continue;
+            default:
+            require_once '../Vendor/libs/' . $key;
+        }
+    } 
 }
 
 
@@ -36,6 +39,8 @@ function autoload($class)
 spl_autoload_register(function ($class) {
     autoload($class);
 });
+
+new Vendor\Core\App;
 
 \Timer::start();
 

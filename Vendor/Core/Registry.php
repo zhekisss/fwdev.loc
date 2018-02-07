@@ -9,8 +9,11 @@ class Registry
 
     private static $instance = null;
 
-    private function __construct($config)
+    private function __construct()
     {
+
+        $config = require_once ROOT . "/config/config.php";
+
         if (isset($config['components'])) {
             foreach ($config['components'] as $name => $component) {
                 self::$objects[$name] = new $component;
@@ -18,10 +21,10 @@ class Registry
         }
     }
 
-    static public function getInstance($config = [])
+    static public function getInstance()
     {
         if (is_null(self::$instance)) {
-            self::$instance = new self($config);
+            self::$instance = new self();
         }
 
         return self::$instance;

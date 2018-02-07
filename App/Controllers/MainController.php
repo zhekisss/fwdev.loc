@@ -4,19 +4,23 @@ namespace App\Controllers;
 
 use App\Models\Main;
 use Vendor\Core\Registry;
+// use Vendor\Core\App;
 
 class MainController extends AppController
 {
     public $layout = 'main';
-
+   
     public function indexAction()
     {
+
         $model = new Main();
         \R::dispense('page');
         // $posts = R::load('page','1');
         $posts = \R::findAll('page');
-        $reg = Registry::getInstance('');
-        $reg->test1 = 'Vendor\Test1';
+        $this->reg::$app->getList();
+        $this->reg::$app->test->go();
+        $this->reg::$app->cache->go();
+
         // $model = new Main;
         // $posts = $model->findAll();
 
