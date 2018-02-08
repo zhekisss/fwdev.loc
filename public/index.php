@@ -52,4 +52,4 @@ try {
     echo $e->getMessage();
 }
 
-echo \Timer::finish();
+file_put_contents("time.txt" ,\Timer::finish(). "\n\t", 8);
