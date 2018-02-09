@@ -10,6 +10,8 @@ class MainController extends AppController
 {
     public $layout = 'main';
 
+    public $sidebar = 'главное меню';
+
     public function indexAction()
     {
 
@@ -20,6 +22,8 @@ class MainController extends AppController
             $posts = \R::findAll('page');
             $this->reg::$app->cache->set('posts', $posts);
         }
+        
+        $sidebar = $this->getSideBar($this->sidebar);
 
         // $model = new Main;
         // $posts = $model->findAll();
@@ -32,7 +36,7 @@ class MainController extends AppController
         // $posts = $model->findLike('пасх', 'content', 'page');
 
         $title = 'MAIN TITLE';
-        $this->set(compact('title', 'posts'));
+        $this->set(compact('title', 'posts', 'sidebar'));
         return true;
     }
 

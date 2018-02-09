@@ -5,29 +5,29 @@ namespace Vendor\Core\Base;
 class View
 {
     /**
-     * Текущий путь
-     *
-     * @var array
-     */
+    * Текущий путь
+    *
+    * @var array
+    */
     public $route;
-
+    
     /**
-     * Текущий вид
-     *
-     * @var string
-     */
+    * Текущий вид
+    *
+    * @var string
+    */
     public $view;
-
+    
     /**
-     * Текущий шаблон
-     *
-     * @var string
-     */
+    * Текущий шаблон
+    *
+    * @var string
+    */
     public $layout;
-
+    
     public function __construct($route, $layout = '', $view = '')
     {
-
+        
         $this->route = $route;
         if ($layout === false) {
             $this->layout = false;
@@ -36,7 +36,7 @@ class View
         }
         $this->view = $view;
     }
-
+    
     public function render($vars)
     {
         !is_array($vars) ? : extract($vars);
@@ -48,9 +48,9 @@ class View
             echo "<p>Не найден вид <b>{$file_view}</b></p>";
             require_once APP . "/views/default/index.php";
         }
-
+        
         $content = ob_get_clean();
-
+        
         if (false !== $this->layout) {
             $file_layout = APP . "/views/layouts/{$this->layout}.php";
             if (is_file($file_layout)) {

@@ -2,7 +2,7 @@
 
 namespace Vendor\Core;
 
-class Registry
+class Registry  
 {
 
     public static $objects = [];
