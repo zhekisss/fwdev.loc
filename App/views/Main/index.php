@@ -10,3 +10,5 @@
 
 
 <?php endforeach; ?>
+
+<?= $sidebar ?>

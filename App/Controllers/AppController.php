@@ -14,4 +14,9 @@ class AppController extends Сontroller
         $this->reg = new App;
         parent::__construct($route);
     }
+
+    public function getSideBar($sidebar)
+    {
+        return '<h1>' . $sidebar . '<h1>';
+    }
 }
