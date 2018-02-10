@@ -42,7 +42,7 @@ spl_autoload_register(function ($class) {
 
 new Vendor\Core\App;
 
-\Timer::start();
+
 
 require_once APP . "/routes.php";
 
@@ -52,4 +52,3 @@ try {
     echo $e->getMessage();
 }
 
-file_put_contents("time.txt" ,\Timer::finish(). "\n\t", 8);

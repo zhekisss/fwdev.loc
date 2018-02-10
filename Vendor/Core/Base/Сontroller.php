@@ -4,6 +4,7 @@ namespace Vendor\Core\Base;
 
 use Vendor\Core\Base\View;
 use Vendor\Core\Db;
+use Vendor\Core\Registry;
 
 abstract class Сontroller
 {
@@ -38,8 +39,12 @@ abstract class Сontroller
      */
     public $vars;
 
+    public $reg;
+
     public function __construct($route)
     {
+        $this->reg = Registry::getInstance();
+        $this->reg->helper = 'Vendor\libs\Classes\Helper';
         $this->route = $route;
         $this->view = $route['action'];
     }

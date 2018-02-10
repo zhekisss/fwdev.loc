@@ -1,14 +1,19 @@
 <h1>TEST</h1>
-<?php foreach ($posts as $post): ?>
+
+<button class="btn" id="send" type="submit">Кнопка</button>
+
+<!-- <?php //foreach ($posts as $post): ?> -->
 
 
-  <h1><?=  $post->name; ?></h1>
-  <p><?=  $post['time']; ?></p>
+  <h1><?=  $posts->name; ?></h1>
+  <p><?=  $posts['time']; ?></p>
   <div class="panel-body">
-    <?=  $post['content']; ?>
+    <?=  $posts['content']; ?>
   </div>
 
 
-<?php endforeach; ?>
+<!-- <?php //endforeach; ?> -->
 
 <?= $sidebar ?>
+
+<script src="js/main.js" ></script>

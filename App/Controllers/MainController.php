@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\Main;
 use Vendor\Core\Registry;
-// use Vendor\Core\App;
 
 class MainController extends AppController
 {
@@ -17,12 +16,12 @@ class MainController extends AppController
 
         $model = new Main();
         \R::dispense('page');
-        $posts = $this->reg::$app->cache->get('posts');
-        if (!$posts){
-            $posts = \R::findAll('page');
-            $this->reg::$app->cache->set('posts', $posts);
-        }
-        
+        // $posts = $this->reg->cache->get('posts');
+        // if (!$posts) {
+            $posts = \R::load( 'page', 2 );
+            $this->reg->cache->set('posts', $posts);
+        // }
+
         $sidebar = $this->getSideBar($this->sidebar);
 
         // $model = new Main;
@@ -42,9 +41,29 @@ class MainController extends AppController
 
     public function testAction()
     {
-        $title = 'MAIN TITLE';
-        $this->set(compact('title'));
-        $this->view = 'test';
+
+        if ($this->reg->helper::is_ajax()) {
+
+            $model = new Main();
+            \R::dispense('page');
+            $post = $this->reg->cache->get('post');
+            if (!$post) {
+                $post = \R::findOne('page');
+                $this->reg->cache->set('post', $post);
+            }
+
+            $this->set(compact('post'));
+
+            $this->layout = 'ajax';
+            $this->view = 'ajax';
+
+        } else {
+
+            $title = 'MAIN TITLE';
+            $this->set(compact('title'));
+            $this->view = 'test';
+            
+        };
     }
 
     public function viewAction(Type $var = null)

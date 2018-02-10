@@ -1,0 +1,8 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.panel-body:first-child {
+    transition: all .3s;
+}
