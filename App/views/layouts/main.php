@@ -17,6 +17,7 @@
                 <h1>MAIN</h1>
                 <h3>Header</h3>
             </header>
+            <h4>Current view file is "<?= __FILE__ ?>"</h4>
             <div class="content">
                 <?= $content ?>
             </div>

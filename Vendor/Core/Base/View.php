@@ -52,8 +52,8 @@ class View
             require_once APP . "/views/default/index.php";
         }
 
-        $content = $this->getScript(ob_get_clean());
-        // $content = ob_get_clean();
+        // $content = $this->getScript(ob_get_clean());
+        $content = ob_get_clean();
         // file_put_contents('content2.txt', $content);
 
         if (false !== $this->layout) {
@@ -71,10 +71,6 @@ class View
         $pattern = "#<script.*?>.*?</script>#si";
 
         preg_match_all($pattern, $content, $this->script);
-        debug($this->script);
-
-        
-        
         return empty($this->script) ? $content : preg_replace($pattern, '', $content);
 
         

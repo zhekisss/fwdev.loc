@@ -26,7 +26,7 @@ class Db
         
         self::$rb = (\R::setup($db['dsn'], $db['user'], $db['pass'] , $options));
         // echo !\R::testConnection() ? 'Ошибка соединения с базой данных' : 'Соединение с базой данных установлено';
-        R::fancyDebug(true);
+        // R::fancyDebug(true);
         // $this->pdo = new \PDO($db['dsn'], $db['user'], $db['pass'] , $options);
     }
     

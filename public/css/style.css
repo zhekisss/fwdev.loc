@@ -3,6 +3,7 @@ body {
     margin: 0;
 }
 
-.panel-body:first-child {
-    transition: all .3s;
+.panel-body {
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
 }

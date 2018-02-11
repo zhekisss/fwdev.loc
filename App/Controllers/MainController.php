@@ -16,11 +16,11 @@ class MainController extends AppController
 
         $model = new Main();
         \R::dispense('page');
-        // $posts = $this->reg->cache->get('posts');
-        // if (!$posts) {
-            $posts = \R::load( 'page', 2 );
-            $this->reg->cache->set('posts', $posts);
-        // }
+        $posts = $this->reg->cache->get('posts');
+        if (!$posts) {
+        $posts = \R::load('page', 2);
+        $this->reg->cache->set('posts', $posts);
+        }
 
         $sidebar = $this->getSideBar($this->sidebar);
 
@@ -42,27 +42,29 @@ class MainController extends AppController
     public function testAction()
     {
 
-        if ($this->reg->helper::is_ajax()) {
+        if ($this->is_ajax()) {
 
             $model = new Main();
             \R::dispense('page');
-            $post = $this->reg->cache->get('post');
+            // $post = $this->reg->cache->get('post');
+            $post = false;
+
             if (!$post) {
-                $post = \R::findOne('page');
+                
+                $post = \R::findOne('page', "id={$_POST['id']}");
+                $postArr = $post->export();
                 $this->reg->cache->set('post', $post);
+
             }
-
-            $this->set(compact('post'));
-
-            $this->layout = 'ajax';
-            $this->view = 'ajax';
+            $postArr = json_encode($postArr);
+            $this->set(compact('postArr'));
 
         } else {
 
             $title = 'MAIN TITLE';
             $this->set(compact('title'));
             $this->view = 'test';
-            
+
         };
     }
 
