@@ -1,1 +1,1 @@
-<?= $postArr;
+<?= $postArr; ?> 

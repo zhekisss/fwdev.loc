@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     
-    <title><?= $title ?></title>
+    <title><?php // $title ?></title>
 
 </head>
 <body>

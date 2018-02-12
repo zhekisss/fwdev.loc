@@ -56,6 +56,8 @@ class MainController extends AppController
                 $this->reg->cache->set('post', $post);
 
             }
+            $postArr['title'] = '<i>JSON object</i>';
+            $postArr['img'] = '<img src="img/23-usersthink-stock-image.jpg" height=300 width=400>';
             $postArr = json_encode($postArr);
             $this->set(compact('postArr'));
 
@@ -70,6 +72,7 @@ class MainController extends AppController
 
     public function viewAction(Type $var = null)
     {
+        $this->view = '';
         echo 'qwerty';
     }
 }
