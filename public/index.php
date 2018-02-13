@@ -1,7 +1,9 @@
 <?php
+require_once "../vendor/autoload.php";
 
 use Vendor\Core\Router;
 use Vendor\Core\Registry;
+use Vendor\Core\App;
 
 // use App\Controllers\ErrorController;
 
@@ -13,18 +15,18 @@ $query = rtrim($_SERVER['QUERY_STRING'], '/');
 
 require_once '../config/config_main.php';
 
-$libs = scandir('../Vendor/libs');
+$libs = scandir('../MiniFw/libs');
 
 
 foreach ($libs as $key) {
-    if (is_file('../Vendor/libs/' . $key)){
+    if (is_file('../MiniFw/libs/' . $key)){
         switch ($key) {
             case '.':
             continue;
             case '..':
             continue;
             default:
-            require_once '../Vendor/libs/' . $key;
+            require_once '../MiniFw/libs/' . $key;
         }
     } 
 }
@@ -36,11 +38,11 @@ function autoload($class)
     !is_file($file) ? : require_once $file;
 }
 
-spl_autoload_register(function ($class) {
-    autoload($class);
-});
+// spl_autoload_register(function ($class) {
+//     autoload($class);
+// });
 
-new Vendor\Core\App;
+new App;
 
 
 
