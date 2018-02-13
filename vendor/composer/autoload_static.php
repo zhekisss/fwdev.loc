@@ -20,7 +20,7 @@ class ComposerStaticInit41a6f0014e261fbcc52b30a5775c3c8d
     public static $prefixDirsPsr4 = array (
         'Vendor\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/MiniFw',
+            0 => __DIR__ . '/..' . '/Fw',
         ),
         'App\\' => 
         array (

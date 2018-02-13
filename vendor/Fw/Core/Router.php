@@ -115,16 +115,16 @@ class Router
         }
     }
 
-    public static function error404()
-    {
-        http_response_code(404);
-        require_once '404.html';
-    }
-
+ 
+    /**
+     * Запуск контроллера 404
+     *
+     * @return void
+     */
     public static function errorController()
     {
         $cObj = new ErrorController();
         $cObj->indexAction();
         $cObj->getView();
-    }
+    }    
 }

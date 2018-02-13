@@ -15,18 +15,18 @@ $query = rtrim($_SERVER['QUERY_STRING'], '/');
 
 require_once '../config/config_main.php';
 
-$libs = scandir('../MiniFw/libs');
+$libs = scandir('../vendor/Fw/libs');
 
 
 foreach ($libs as $key) {
-    if (is_file('../MiniFw/libs/' . $key)){
+    if (is_file('../vendor/Fw/libs/' . $key)){
         switch ($key) {
             case '.':
             continue;
             case '..':
             continue;
             default:
-            require_once '../MiniFw/libs/' . $key;
+            require_once '../vendor/Fw/libs/' . $key;
         }
     } 
 }

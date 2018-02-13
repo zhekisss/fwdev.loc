@@ -18,6 +18,7 @@ class Db
     
     protected function __construct()
     {
+        require_once ROOT . '/vendor/Fw/libs/rb.php';
         $db = require_once ROOT . '/config/config_db.php';
         $options = [
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,

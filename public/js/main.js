@@ -7,7 +7,7 @@ window.addEventListener('load', function(e){
   var title = document.getElementsByTagName("h1")[0];
   
   send.addEventListener("click", function() {
-    content = "id=" + encodeURIComponent("1");
+    content = "id=1&ajax=true";
     var request = new XMLHttpRequest();
     
     request.open("post", "/main/test", true);
