@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\FrontendControllers;
 
 class PostsController extends AppController
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\FrontendControllers;
 
 /**
  * Вызов страницы 404

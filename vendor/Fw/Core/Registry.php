@@ -52,6 +52,6 @@ class Registry
 
     public function getList()
     {
-        echo '<pre>' . var_dump(self::$objects) . '</pre>';
+        return '<pre>' . var_dump(self::$objects) . '</pre>';
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\FrontendControllers;
 
 use App\Models\Main;
 use Vendor\Core\Registry;
@@ -46,7 +46,7 @@ class MainController extends AppController
 
             $model = new Main();
             \R::dispense('page');
-            // $post = $this->reg->cache->get('post');
+            $post = $this->reg->cache->get('post');
             $post = false;
 
             if (!$post) {
@@ -57,7 +57,8 @@ class MainController extends AppController
 
             }
             $postArr['title'] = '<i>JSON object</i>';
-            $postArr['img'] = '<img src="img/23-usersthink-stock-image.jpg" height=300 width=400>';
+            $postArr['img'] = '<img src="http://lorempixel.com/800/400" height=300 width=400>';
+            // $postArr['reg'] = $this->reg->getList();
             $postArr = json_encode($postArr);
             $this->set(compact('postArr'));
 

@@ -2,8 +2,6 @@
 
 namespace Vendor\Core;
 
-use App\Controllers\ErrorController;
-
 class Router
 {
     protected static $routes = [];
@@ -77,7 +75,7 @@ class Router
     {
         $url = self::removeQueryString($url);
         if (self::matchRoute($url)) {
-            $controller = 'App\\Controllers\\' . self::upperCamelCase(self::$route['controller']) . 'Controller';
+            $controller = 'App\\FrontendControllers\\' . self::upperCamelCase(self::$route['controller']) . 'Controller';
             if (class_exists($controller)) {
                 $cObj = new $controller(self::$route);
                 $action = self::lowerCamelCase(self::$route['action']) . "Action";
@@ -114,7 +112,6 @@ class Router
             }
         }
     }
-
  
     /**
      * Запуск контроллера 404
@@ -123,7 +120,7 @@ class Router
      */
     public static function errorController()
     {
-        $cObj = new ErrorController();
+        $cObj = new \App\FrontendControllers\ErrorController();
         $cObj->indexAction();
         $cObj->getView();
     }    

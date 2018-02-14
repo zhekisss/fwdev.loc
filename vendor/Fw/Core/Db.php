@@ -13,19 +13,18 @@ class Db
     public static $countSql = 0;
 
     public static $queries = [];
-
-    public static $rb;
+    
     
     protected function __construct()
     {
-        require_once ROOT . '/vendor/Fw/libs/rb.php';
+        require_once ROOT . '/vendor/Fw/Core/rb.php';
         $db = require_once ROOT . '/config/config_db.php';
         $options = [
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
         ];
         
-        self::$rb = (\R::setup($db['dsn'], $db['user'], $db['pass'] , $options));
+        \R::setup($db['dsn'], $db['user'], $db['pass'] , $options);
         // echo !\R::testConnection() ? 'Ошибка соединения с базой данных' : 'Соединение с базой данных установлено';
         // R::fancyDebug(true);
         // $this->pdo = new \PDO($db['dsn'], $db['user'], $db['pass'] , $options);

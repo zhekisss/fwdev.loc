@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers;
+namespace App\FrontendControllers;
 
 use \Vendor\Core\Base\Сontroller;
 
