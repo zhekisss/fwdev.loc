@@ -2,7 +2,7 @@
 
 namespace Backend\Controllers;
 
-class DashboardController
+class DashboardController extends AdminController
 {
     
 }

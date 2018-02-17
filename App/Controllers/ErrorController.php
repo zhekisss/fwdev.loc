@@ -14,6 +14,8 @@ class ErrorController extends AppController
         global $query;
         $this->query = $query;
 
+        // $this->layout = '';
+
         $route = [
             'controller' => 'Error',
             'action' => 'index'

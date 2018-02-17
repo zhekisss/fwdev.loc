@@ -50,8 +50,7 @@ class View
             
             require_once $file_view;
         } elseif  (!empty($file_view))  {
-            
-            echo "<p>Не найден вид <b>{$file_view}</b></p>";
+            // echo "<p>Не найден вид <b>{$file_view}</b></p>";
             require_once APP . "/views/default/index.php";
             
         }
