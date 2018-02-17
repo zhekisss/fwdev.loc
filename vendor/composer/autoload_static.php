@@ -11,6 +11,10 @@ class ComposerStaticInit41a6f0014e261fbcc52b30a5775c3c8d
         array (
             'Vendor\\' => 7,
         ),
+        'B' => 
+        array (
+            'Backend\\' => 8,
+        ),
         'A' => 
         array (
             'App\\' => 4,
@@ -21,6 +25,10 @@ class ComposerStaticInit41a6f0014e261fbcc52b30a5775c3c8d
         'Vendor\\' => 
         array (
             0 => __DIR__ . '/..' . '/Fw',
+        ),
+        'Backend\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/Backend',
         ),
         'App\\' => 
         array (

@@ -6,7 +6,7 @@ use Vendor\Core\Base\View;
 use Vendor\Core\Db;
 use Vendor\Core\Registry;
 
-abstract class Сontroller
+abstract class Controller
 {
     public $rb;
 

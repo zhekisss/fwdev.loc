@@ -1,14 +1,12 @@
 <?php
 
-namespace App\FrontendControllers;
+namespace App\Controllers;
 
 use App\Models\Main;
 use Vendor\Core\Registry;
 
 class MainController extends AppController
 {
-    public $layout = 'main';
-
     public $sidebar = 'главное меню';
 
     public function indexAction()
@@ -21,8 +19,6 @@ class MainController extends AppController
         $posts = \R::load('page', 2);
         $this->reg->cache->set('posts', $posts);
         }
-
-        $sidebar = $this->getSideBar($this->sidebar);
 
         // $model = new Main;
         // $posts = $model->findAll();

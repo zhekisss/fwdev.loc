@@ -1,11 +1,9 @@
 <?php
 
-namespace App\FrontendControllers;
+namespace App\Controllers;
 
 class PageController extends AppController
 {
-
-    public $layout = '';
 
     public function indexAction()
     {

@@ -1,16 +1,13 @@
 <?php
 
-namespace App\FrontendControllers;
+namespace App\Controllers;
 
 class PostsController extends AppController
 {
-    // public $route = [];
-    public $layout = 'main';
     
     public function __construct($route)
     {
-        // $this->route = $route;
-
+        
        parent::__construct($route);
     }
 

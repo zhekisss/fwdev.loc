@@ -6,45 +6,45 @@ class Router
 {
     protected static $routes = [];
     protected static $route = [];
-
+    
     /**
-     * Добавляет маршрут согласно шаблону
-     *
-     * @param string $regexp
-     * @param array $route
-     * @return void
-     */
+    * Добавляет маршрут согласно шаблону
+    *
+    * @param string $regexp
+    * @param array $route
+    * @return void
+    */
     public static function add($regexp, $route = [])
     {
         self::$routes[$regexp] = $route;
     }
-
+    
     /**
-     * Возвращает массив маршрутов
-     *
-     * @return array
-     */
+    * Возвращает массив маршрутов
+    *
+    * @return array
+    */
     public static function getRoutes()
     {
         return self::$routes;
     }
-
+    
     /**
-     * Возвращает массив маршрута
-     *
-     * @return array
-     */
+    * Возвращает массив маршрута
+    *
+    * @return array
+    */
     public static function getRoute()
     {
         return self::$route;
     }
-
+    
     /**
-     * Выделяет маршрут из url согласно шаблона
-     *
-     * @param string $url
-     * @return boolean
-     */
+    * Выделяет маршрут из url согласно шаблона
+    *
+    * @param string $url
+    * @return boolean
+    */
     public static function matchRoute($url)
     {
         foreach (self::$routes as $pattern => $route) {
@@ -64,18 +64,19 @@ class Router
         }
         return false;
     }
-
+    
     /**
-     * Вызывает контроллер и экшн согласно маршрута
-     *
-     * @param string $url
-     *
-     */
+    * Вызывает контроллер и экшн согласно маршрута
+    *
+    * @param string $url
+    *
+    */
     public static function dispatch($url)
     {
+        $env = ENV === "admin" ? "Backend" : "App";
         $url = self::removeQueryString($url);
         if (self::matchRoute($url)) {
-            $controller = 'App\\FrontendControllers\\' . self::upperCamelCase(self::$route['controller']) . 'Controller';
+            $controller = "{$env}\\Controllers\\" . self::upperCamelCase(self::$route['controller']) . 'Controller';
             if (class_exists($controller)) {
                 $cObj = new $controller(self::$route);
                 $action = self::lowerCamelCase(self::$route['action']) . "Action";
@@ -94,13 +95,13 @@ class Router
     {
         return str_replace(' ', '', ucwords(str_replace('-', ' ', $name)));
     }
-
+    
     protected static function lowerCamelCase($name)
     {
         // return str_replace(' ', '',ucwords(str_replace('-',' ', $name)));
         return lcfirst(self::upperCamelCase($name));
     }
-
+    
     public static function removeQueryString($url)
     {
         if ($url) {
@@ -112,16 +113,16 @@ class Router
             }
         }
     }
- 
+    
     /**
-     * Запуск контроллера 404
-     *
-     * @return void
-     */
+    * Запуск контроллера 404
+    *
+    * @return void
+    */
     public static function errorController()
     {
-        $cObj = new \App\FrontendControllers\ErrorController();
+        $cObj = new \App\Controllers\ErrorController();
         $cObj->indexAction();
         $cObj->getView();
-    }    
+    }
 }

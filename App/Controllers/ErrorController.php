@@ -1,6 +1,6 @@
 <?php
 
-namespace App\FrontendControllers;
+namespace App\Controllers;
 
 /**
  * Вызов страницы 404
@@ -8,8 +8,6 @@ namespace App\FrontendControllers;
 class ErrorController extends AppController
 {
     public $query;
-
-    public $layout = 'main';
 
     public function __construct()
     {
@@ -25,8 +23,7 @@ class ErrorController extends AppController
     }
 
     public function indexAction()
-    {
-        
+    {        
         $query = $this->query;
         $title = 'ERROR 404';
         $this->set(compact('query', 'title'));

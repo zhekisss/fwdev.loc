@@ -14,6 +14,6 @@
 
 <!-- <?php //endforeach; ?> -->
 
-<?= $sidebar ?>
+
 
 <script src="js/main.js" ></script>

@@ -1,22 +1,22 @@
 <?php
 
-namespace App\FrontendControllers;
+namespace App\Controllers;
 
-use \Vendor\Core\Base\Сontroller;
+use Vendor\Core\Base\Controller;
 
-class AppController extends Сontroller
+
+
+
+class AppController extends Controller
 {
     public $reg;
+
+    public $layout = 'main';
     
     public function __construct($route)
     {
         
         parent::__construct($route);
-    }
-    
-    public function getSideBar($sidebar)
-    {
-        return '<h1>' . $sidebar . '<h1>';
     }
     
     public function ajax()
@@ -25,7 +25,5 @@ class AppController extends Сontroller
         'ajax' => 'data',
         'function' => 'test'
         ];
-
-                
     }
 }

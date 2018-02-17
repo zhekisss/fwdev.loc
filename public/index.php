@@ -7,13 +7,16 @@ use Vendor\Core\App;
 
 // use App\Controllers\ErrorController;
 
-
-
 session_start();
 
-$query = rtrim($_SERVER['QUERY_STRING'], '/');
+$query = strtolower(rtrim($_SERVER['QUERY_STRING'], '/'));
 
-require_once '../config/config_main.php';
+list($env) = explode('/', $query);
+
+require_once $env == "admin" ? '../config/back_conf.php' : '../config/config_main.php';
+
+
+
 
 $libs = scandir('../vendor/Fw/libs');
 
@@ -31,7 +34,6 @@ foreach ($libs as $key) {
     } 
 }
 
-
 function autoload($class)
 {
     $file = ROOT . '/' . str_replace('\\', '/', $class . '.php');
@@ -39,18 +41,24 @@ function autoload($class)
 }
 
 // spl_autoload_register(function ($class) {
-//     autoload($class);
-// });
+    //     autoload($class);
+    // });
+    
+    // new App;
 
-new App;
+    if(ENV !== 'admin') {
+    
+        require_once APP . "/routes.php";
+        
+        try {
+            Router::dispatch($query);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+        
+        
+    } else {
 
+    require_once APP . '/admin.php';
 
-
-require_once APP . "/routes.php";
-
-try {
-    Router::dispatch($query);
-} catch (Exception $e) {
-    echo $e->getMessage();
-}
-
+    }

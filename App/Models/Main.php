@@ -8,7 +8,6 @@ use R;
 class Main extends \Vendor\Core\Base\Model
 {
     public $table = 'page';
-    public $rb;
     
     // public function __construct()
     // {
