@@ -1,22 +1,16 @@
 <?php
+session_start();
+$previousID = session_name('framework_php');
+
 require_once "../vendor/autoload.php";
 
 use Vendor\Core\Router;
-use Vendor\Core\Registry;
-use Vendor\Core\App;
-
-// use App\Controllers\ErrorController;
-
-session_start();
 
 $query = strtolower(rtrim($_SERVER['QUERY_STRING'], '/'));
 
 list($env) = explode('/', $query);
 
 require_once $env == "admin" ? '../config/back_conf.php' : '../config/config_main.php';
-
-
-
 
 $libs = scandir('../vendor/Fw/libs');
 
