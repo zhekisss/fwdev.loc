@@ -1,7 +1,6 @@
 <?php
 use Vendor\Core\Router;
-use Vendor\Core\Registry;
-use Vendor\Core\App;
+
 require_once 'routes.php';
 
 try {

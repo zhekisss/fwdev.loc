@@ -9,7 +9,7 @@
 </head>
 
 <body>
-<h3>MAIN</h3>
+<h3>DEFAULT</h3>
   <?= $content ?>
 
 </body>
