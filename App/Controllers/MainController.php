@@ -16,6 +16,14 @@ class MainController extends AppController
         parent::__construct($route);
     }
 
+    public $cache;
+
+
+    // public function __construct($route)
+    // {
+    //     parent::__construct($route);
+    // }
+
     public function indexAction()
     {
 
@@ -37,6 +45,7 @@ class MainController extends AppController
         // $posts = $model->findBySql("SELECT * FROM {$model->table} WHERE content LIKE ?",['%пасх%']);
         // $posts = $model->findLike('пасх', 'content', 'page');
 
+        $method = $this->methodName(__CLASS__,__FUNCTION__);
         $title = 'MAIN TITLE';
         $this->set(compact('title', 'posts'));
         return true;
