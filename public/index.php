@@ -4,6 +4,21 @@ $previousID = session_name('framework_php');
 
 require_once "../vendor/autoload.php";
 
+$composerJson = json_decode(file_get_contents('../composer.json'));
+
+$require = $composerJson->autoload;
+
+foreach ($require as $key => $values) {
+    foreach ($values as $value => $prop) {
+        if ($value === 'Vendor\\') {
+            define('CORE', $prop);
+        } else {
+            continue;
+        }
+
+    };
+};
+
 use Vendor\Core\Router;
 
 $query = strtolower(rtrim($_SERVER['QUERY_STRING'], '/'));
@@ -12,20 +27,21 @@ list($env) = explode('/', $query);
 
 require_once $env == "admin" ? '../config/back_conf.php' : '../config/config_main.php';
 
-$libs = scandir('../vendor/Fw/libs');
+$libs = scandir('../' . CORE . '/libs');
+
 
 
 foreach ($libs as $key) {
-    if (is_file('../vendor/Fw/libs/' . $key)){
+    if (is_file('../vendor/framework/libs/' . $key)) {
         switch ($key) {
             case '.':
-            continue;
+                continue;
             case '..':
-            continue;
+                continue;
             default:
-            require_once '../vendor/Fw/libs/' . $key;
+                require_once '../vendor/framework/libs/' . $key;
         }
-    } 
+    }
 }
 
 function autoload($class)
@@ -40,19 +56,19 @@ function autoload($class)
     
     // new App;
 
-    if(ENV !== 'admin') {
-    
-        require_once APP . "/routes.php";
-        
-        try {
-            Router::dispatch($query);
-        } catch (Exception $e) {
-            echo $e->getMessage();
-        }
-        
-        
-    } else {
+if (ENV !== 'admin') {
+
+    require_once APP . "/routes.php";
+
+    try {
+        Router::dispatch($query);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+
+
+} else {
 
     require_once APP . '/admin.php';
 
-    }
+}

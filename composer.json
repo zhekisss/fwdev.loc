@@ -3,18 +3,16 @@
     "description": "Создание собственного фрэймворка",
     "type": "project",
     "license": "FREE",
-    "authors": [
-        {
-            "name": "zhekisss",
-            "email": "ya.zhekisss@yandex.ru"
-        }
-    ],
+    "authors": [{
+        "name": "zhekisss",
+        "email": "ya.zhekisss@yandex.ru"
+    }],
     "require": {},
     "autoload": {
         "psr-4": {
             "App\\": "App",
             "Backend\\": "Backend",
-            "Vendor\\": "vendor/Fw"
+            "Vendor\\": "vendor/framework"
         }
     }
 }

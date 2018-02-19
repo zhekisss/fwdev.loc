@@ -7,12 +7,19 @@ use Vendor\Core\Registry;
 
 class MainController extends AppController
 {
-    public $sidebar = 'главное меню';
+
+    public $model;
+
+    public function __construct($route)
+    {
+        $this->model = new Main();
+        parent::__construct($route);
+    }
 
     public function indexAction()
     {
 
-        $model = new Main();
+        
         \R::dispense('page');
         $posts = $this->reg->cache->get('posts');
         if (!$posts) {
@@ -31,7 +38,7 @@ class MainController extends AppController
         // $posts = $model->findLike('пасх', 'content', 'page');
 
         $title = 'MAIN TITLE';
-        $this->set(compact('title', 'posts', 'sidebar'));
+        $this->set(compact('title', 'posts'));
         return true;
     }
 
@@ -39,8 +46,7 @@ class MainController extends AppController
     {
 
         if ($this->is_ajax()) {
-
-            $model = new Main();
+            
             \R::dispense('page');
             $post = $this->reg->cache->get('post');
             $post = false;
@@ -53,7 +59,7 @@ class MainController extends AppController
 
             }
             $postArr['title'] = '<i>JSON object</i>';
-            $postArr['img'] = '<img src="http://lorempixel.com/800/400" height=300 width=400>';
+            
             // $postArr['reg'] = $this->reg->getList();
             $postArr = json_encode($postArr);
             $this->set(compact('postArr'));

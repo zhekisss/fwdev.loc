@@ -39,6 +39,11 @@ abstract class Controller
      */
     public $vars;
 
+    /**
+     * Registry
+     *
+     * @var object
+     */
     public $reg;
 
     public function __construct($route)
