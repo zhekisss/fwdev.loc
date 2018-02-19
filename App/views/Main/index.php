@@ -14,6 +14,6 @@
 
 <!-- <?php //endforeach; ?> -->
 
-
+<?= $method ?>
 
 <script src="js/main.js" ></script>

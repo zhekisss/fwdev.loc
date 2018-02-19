@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use \Vendor\Base\Model;
+use Vendor\Base\Model;
 use R;
 
 class Main extends \Vendor\Core\Base\Model
