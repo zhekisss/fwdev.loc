@@ -42,7 +42,7 @@ class Registry
         }
     }
 
-    public function __wakeup()
+    private function __wakeup()
     {
     }
 

@@ -13,28 +13,34 @@ class MainController extends AppController
     public function __construct($route)
     {
         $this->model = new Main();
+        \R::dispense('page');
         parent::__construct($route);
+        $this->reg->menu = 'Vendor\\Widgets\\Menu\\Menu';
     }
 
     public $cache;
 
-
-    // public function __construct($route)
-    // {
-    //     parent::__construct($route);
-    // }
-
     public function indexAction()
     {
 
-        
-        \R::dispense('page');
-        $posts = $this->reg->cache->get('posts');
-        if (!$posts) {
-        $posts = \R::load('page', 2);
-        $this->reg->cache->set('posts', $posts);
-        }
 
+        
+        // $posts = $this->reg->cache->get('posts');
+        // if (!$posts) {
+        $posts = \R::findAll('page', 'LIMIT 2');
+
+        $postsArr = $this->bean2Arr($posts);
+
+        $this->reg->cache->set('posts', $posts);
+        $menu =  $this->reg->menu->setProp([
+            'tpl'       => www . '/menu/my_menu.php',
+            'container' => 'ul',
+            'tabble'    => 'categories',
+            'cache'     => 60
+        ]);
+
+        // }
+            
         // $model = new Main;
         // $posts = $model->findAll();
 
@@ -45,9 +51,9 @@ class MainController extends AppController
         // $posts = $model->findBySql("SELECT * FROM {$model->table} WHERE content LIKE ?",['%пасх%']);
         // $posts = $model->findLike('пасх', 'content', 'page');
 
-        $method = $this->methodName(__CLASS__,__FUNCTION__);
+        $method = $this->methodName(__class__, __FUNCTION__);
         $title = 'MAIN TITLE';
-        $this->set(compact('title', 'posts'));
+        $this->set(compact('title', 'posts', 'postsArr', 'menu'));
         return true;
     }
 
@@ -55,13 +61,13 @@ class MainController extends AppController
     {
 
         if ($this->is_ajax()) {
-            
+
             \R::dispense('page');
             $post = $this->reg->cache->get('post');
             $post = false;
 
             if (!$post) {
-                
+
                 $post = \R::findOne('page', "id={$_POST['id']}");
                 $postArr = $post->export();
                 $this->reg->cache->set('post', $post);
@@ -86,5 +92,18 @@ class MainController extends AppController
     {
         $this->view = '';
         echo 'qwerty';
+    }
+
+    public function bean2Arr($posts)
+    {
+        $count = 0;
+        foreach ($posts as $post) {
+            $count++;
+            $postsArr[] = $post->export();
+        }
+        if ($count === 1) {
+            $postsArr = $postsArr[0];
+        }
+        return $postsArr;
     }
 }

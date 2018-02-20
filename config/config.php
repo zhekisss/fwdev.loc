@@ -2,8 +2,8 @@
 
 $config = [
     'components' => [
-        'cache' => 'Vendor\libs\Classes\Cache',
-        'test' => 'Vendor\libs\Classes\Test'
+        'cache' => 'Vendor\libs\Classes\Cache'
+        // 'menu' => 'Vendor\Widgets\Menu\Menu'
     ]
 ];
     
