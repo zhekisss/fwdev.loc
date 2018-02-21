@@ -14,6 +14,8 @@
     <div class="container">
         <div class="row">
             <header>
+                <?= $menu ?>
+                <div class="clear"></div>
                 <h1>MAIN</h1>
                 <h3>Header</h3>
             </header>

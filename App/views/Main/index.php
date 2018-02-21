@@ -10,9 +10,4 @@
   </div>
 <?php endforeach; ?>
 
-
-  <?= $menu ?>
-
-
-
 <script src="js/main.js" ></script>

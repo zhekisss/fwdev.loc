@@ -32,12 +32,13 @@ class MainController extends AppController
         $postsArr = $this->bean2Arr($posts);
 
         $this->reg->cache->set('posts', $posts);
-        $menu =  $this->reg->menu->setProp([
-            'tpl'       => www . '/menu/my_menu.php',
-            'container' => 'ul',
-            'tabble'    => 'categories',
-            'cache'     => 60
-        ]);
+        $menu =  $this->reg->menu->menuHtml;
+        // $menu =  $this->reg->menu->setProp([
+            // 'tpl'       => www . '/menu/my_menu.php',
+            // 'container' => 'ul',
+            // 'tabble'    => 'categories',
+            // 'cache'     => 60
+        // ]);
 
         // }
             

@@ -2,9 +2,77 @@ body {
     padding: 0;
     margin: 0;
 }
-
+a:hover{
+    
+    text-decoration: none;
+}
 .panel-body {
     transition: opacity 1s ease-in-out, height 1s ease-in-out;
     opacity: 0;
+}
+
+ul {
+    position: relative;
+    padding: 0;
+    z-index: 100;
+}
+
+.menu .menu-item {
+    display: block;
+    float: left;
+    width: 200px;
+    height: 35px;
+}
+
+.menu>.menu-item {
+    padding: 5px;
+    height: 45px;
+    width: 210px;
+}
+
+.menu .menu-item a {
+    display: block;
+    padding: 3px;
+    width: 100%;
+    height: 100%;
+    background-color: antiquewhite;
+}
+
+.menu .menu-item a:hover {
+    background-color: antiquewhite;
+}
+
+.submenu .menu-item .submenu {
+    position: relative;
+    padding: 0;
+    top: -100%;
+    left: 100%;
+    z-index: 150;
+}
+
+.child>a::after {
+    display: block;
+    position: relative;
+    content: "->";
+    width: 10px;
+    left: 90%;
+    top: -60%;
     
+}
+
+
+.menu .menu-item:hover>.submenu {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .3s ease-in-out;
+    
+}
+
+.submenu {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.clear {
+    clear: both;
 }

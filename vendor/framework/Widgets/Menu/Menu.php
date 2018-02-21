@@ -9,15 +9,34 @@ class Menu
     protected $tree;
     protected $tpl = __DIR__ . '/menu_tpl/menu_tpl.php';
     protected $container = 'ul';
+    protected $className = 'menu';
     protected $table = 'categories';
     protected $cache = 3600;
 
     public function __construct()
     {
-
+        $this->getOptions();
         $this->tree = $this->run();
     }
 
+
+    protected function getOptions($options = [])
+    {
+        foreach($options as $key => $value){
+            if(property_exists($this, $key)){
+                $this->$key = $value;
+            }
+        }
+    }
+
+    protected function output()
+    {
+        ob_start();
+        echo "<{$this->container} class=\"{$this->className}\" >";
+        echo $this->menuHtml;
+        echo "</{$this->container}>";
+        $this->menuHtml = ob_get_clean();
+    }
     /**
      * Запускает все методы для формирования меню
      *
@@ -25,9 +44,11 @@ class Menu
      */
     protected function run()
     {
-        $this->data = \R::findAll('categories');
+        $this->data = \R::findAll($this->table);
         $this->tree = $this->gettree();
         $this->menuHtml = $this->getMenuHtml($this->tree);
+        $this->output();
+        return $this;
     }
 
     protected function bean2Arr($arr)
@@ -41,7 +62,7 @@ class Menu
         return $res;
     }
 
-    public function gettree()
+    protected function gettree()
     {
         $tree = [];
         $data = $this->data;
@@ -59,7 +80,7 @@ class Menu
         return $tree;
     }
 
-    public function getMenuHtml($tree, $tab = '')
+    protected function getMenuHtml($tree, $tab = '')
     {
         $str = '';
         foreach ($tree as $id => $category) {
@@ -68,18 +89,10 @@ class Menu
         return $str;
     }
 
-    public function category2Template($category, $tab)
+    protected function category2Template($category, $tab)
     {
         ob_start();
         require $this->tpl;
         return ob_get_clean();
-    }
-
-    function category2String($data)
-    {
-        foreach ($data as $item) {
-            $string .= category2Template($item);
-        }
-        return $string;
     }
 }

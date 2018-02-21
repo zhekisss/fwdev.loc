@@ -8,4 +8,4 @@ Router::add('^page/(?P<alias>[a-z-]+)$', ['controller' => 'page' , 'action' => '
 Router::add('^posts/(?P<alias>[a-z-]+)$', ['controller' => 'posts' , 'action' => 'view']);
 Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
 Router::add('^$', ['controller' => 'main', 'action' => 'index']);
-Router::add('^$/(?P<alias>[a-z-]+)$', ['controller' => 'main', 'action' => 'index']);
+// Router::add('^$/(?P<alias>[a-z-]+)$', ['controller' => 'main', 'action' => 'index']);
