@@ -4,7 +4,7 @@ namespace Vendor\Widgets\Menu;
 
 class Menu
 {
-    public $menuHtml;
+    protected $menuHtml;
     protected $data;
     protected $tree;
     protected $tpl = __DIR__ . '/menu_tpl/menu_tpl.php';
@@ -13,14 +13,18 @@ class Menu
     protected $table = 'categories';
     protected $cache = 3600;
 
-    public function __construct()
+    public function __construct($options = [])
     {
-        $this->getOptions();
-        $this->tree = $this->run();
+        $this->getOptions($options);
+        $this->run();
     }
 
+    public function __toString()
+    {
+     return $this->menuHtml;   
+    }
 
-    protected function getOptions($options = [])
+    public function getOptions($options)
     {
         foreach($options as $key => $value){
             if(property_exists($this, $key)){
@@ -48,7 +52,6 @@ class Menu
         $this->tree = $this->gettree();
         $this->menuHtml = $this->getMenuHtml($this->tree);
         $this->output();
-        return $this;
     }
 
     protected function bean2Arr($arr)

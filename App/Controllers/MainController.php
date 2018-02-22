@@ -15,31 +15,31 @@ class MainController extends AppController
         $this->model = new Main();
         \R::dispense('page');
         parent::__construct($route);
-        $this->reg->menu = 'Vendor\\Widgets\\Menu\\Menu';
+        // $this->reg->menu = 'Vendor\\Widgets\\Menu\\Menu';
     }
 
     public $cache;
 
     public function indexAction()
     {
-
-
+        
+        
         
         // $posts = $this->reg->cache->get('posts');
         // if (!$posts) {
         $posts = \R::findAll('page', 'LIMIT 2');
 
         $postsArr = $this->bean2Arr($posts);
+            
+            // $this->reg->cache->set('posts', $posts);
 
-        $this->reg->cache->set('posts', $posts);
-        $menu =  $this->reg->menu->menuHtml;
-        // $menu =  $this->reg->menu->setProp([
-            // 'tpl'       => www . '/menu/my_menu.php',
-            // 'container' => 'ul',
-            // 'tabble'    => 'categories',
-            // 'cache'     => 60
-        // ]);
+        $menuOptions = [
+            'container' => 'div',
+            'className' => 'main-menu'
+        ];
 
+        $menu = (string) $this->reg->get('menu', $menuOptions);
+        
         // }
             
         // $model = new Main;

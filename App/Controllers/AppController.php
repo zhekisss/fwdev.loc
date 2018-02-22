@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 use Vendor\Core\Base\Controller;
 
+/**
+ * Общий контроллер для фроненд части сайта
+ */
 class AppController extends Controller
 {
     public $reg;

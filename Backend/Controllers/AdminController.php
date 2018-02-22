@@ -4,6 +4,10 @@ namespace Backend\Controllers;
 
 use Vendor\Core\Base\Controller;
 
+
+/**
+ * Главный контроллер админской части сайта
+ */
 class AdminController extends Controller
 {
 
