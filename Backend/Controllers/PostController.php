@@ -6,13 +6,15 @@ class PostController extends AdminController
 {
     public function indexAction()
     {
-        $index = 'index';
+        $index = 'Класс: ' . __CLASS__ . '<br> Метод: ' . __FUNCTION__;
+        
         $this->set(compact('index'));
     }
 
     public function userAction()
     {
-        $index = 'user';
+        $index = 'Класс: ' . __CLASS__ . '<br> Метод: ' . __FUNCTION__;
+        
         $this->set(compact('index'));
     }
 }

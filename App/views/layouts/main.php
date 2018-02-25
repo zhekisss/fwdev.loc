@@ -25,9 +25,9 @@
             </div>
             <footer>
                 <h1>FOOTER</h1>
-            </footer>
+                </footer>
         </div>
     </div>
-
+<?= $this->putScripts() ?>
 </body>
 </html>

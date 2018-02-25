@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\libs\Classes;
+namespace Vendor\Components;
 
 class Cache
 {

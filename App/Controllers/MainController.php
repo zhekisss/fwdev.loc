@@ -21,10 +21,7 @@ class MainController extends AppController
     
     public function indexAction()
     {
-        $menuOptions = [
-        'container' => 'div',
-        'className' => 'main-menu'
-        ];
+        $menuOptions = [];
         
         $cacheMenu = $this->reg->get('cache');
         $menu =  $cacheMenu->get('menu');
@@ -32,6 +29,7 @@ class MainController extends AppController
 
         $cachePost = $this->reg->get('cache');
         $posts =  $cachePost->get('posts');
+        
         if (!$posts || !$menu) {
             $posts = \R::findAll('page', 'LIMIT 2');
             

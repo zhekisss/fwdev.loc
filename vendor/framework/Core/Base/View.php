@@ -43,9 +43,9 @@ class View
     {
         !is_array($vars) ? : extract($vars);
         $file_view = empty($this->view) ? '' : APP . "/views/{$this->route['controller']}/{$this->view}.php";
-
+        
         ob_start();
-
+        
         if (is_file($file_view)) {
             
             require_once $file_view;
@@ -55,13 +55,13 @@ class View
             
         }
         
-        // $content = $this->getScript(ob_get_clean());
         
         $content = ob_get_clean();
-
-        // file_put_contents('content2.txt', $content);
+        $content = $this->getScript($content);
         
-        if (false !== $this->layout) {
+        
+        
+        if ($this->layout) {
             $file_layout = APP . "/views/layouts/{$this->layout}.php";
             if (is_file($file_layout)) {
                 require_once $file_layout;
@@ -73,4 +73,19 @@ class View
     
     public function getScript($content)
     {
-        $pattern = "#<script.*?>.*?</script>#si"; preg_match_all($pattern, $content, $this->script); return empty($this->script) ? $content : preg_replace($pattern, '', $content); } }
+        $pattern = "#<script.*?>.*?</script>#si"; preg_match_all($pattern, $content, $this->script);
+        return empty($this->script) ? $content : preg_replace($pattern, '', $content);
+    }
+
+    public function putScripts(){
+        $scripts = empty($this->script[0]) ?: $this->script[0] ;
+        ob_start();
+        if (is_array($scripts)){
+            foreach($scripts as $script){
+                echo $script;
+            }
+            return ob_get_clean();
+        }
+        return '';
+    }
+}
