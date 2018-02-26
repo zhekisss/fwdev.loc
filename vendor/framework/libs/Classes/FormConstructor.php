@@ -99,3 +99,9 @@ class FormConstructor
         return Html::tag('span', '', ['class' => 'result']);
     }
 }
+
+
+$form = FormConstructor::begin('/admin',[
+    'name' => 'formLogin',
+    'method' => 'POST'
+    ]);

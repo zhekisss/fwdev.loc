@@ -28,7 +28,7 @@ $query = strtolower(rtrim($_SERVER['QUERY_STRING'], '/'));
 list($env) = explode('/', $query);
 
 // Проверяем что первое слово равно "admin", если да то загружаем настройки для админ части сайта
-require_once $env == "administrator" ? '../config/back_conf.php' : '../config/config_main.php';
+require_once $env == "admin" ? '../config/back_conf.php' : '../config/config_main.php';
 
 // Сканирует папку с библиотеками функций и подключает их
 $libs = scandir('../' . CORE . '/libs');

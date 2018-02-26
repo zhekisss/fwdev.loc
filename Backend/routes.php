@@ -2,9 +2,9 @@
 
 use Vendor\Core\Router;
 
-Router::add('^administrator$', ['controller' => 'admin', 'action' => 'index']);
-Router::add('^administrator/logout$', ['controller' => 'admin', 'action' => 'logout']);
-Router::add('^administrator/(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
+Router::add('^admin$', ['controller' => 'admin', 'action' => 'index']);
+Router::add('^admin/logout$', ['controller' => 'admin', 'action' => 'logout']);
+Router::add('^admin/(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
 // Router::add('^admin/(?P<controller>[a-z-]+)$', ['action' => 'index']);
 // Router::add('^admin/page/(?P<action>[a-z-]+)$', ['controller' => 'page']);
 // Router::add('^admin/post/(?P<action>[a-z-]+)$', ['controller' => 'post']);
