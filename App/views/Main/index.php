@@ -11,6 +11,6 @@
 <?php endforeach; ?>
 
 <?= $form ?>
-
+<h2>{{date( 'r' ,time());}}</h2>
 <script src="js/main.js" ></script>
 <script src="js/script.js" ></script>

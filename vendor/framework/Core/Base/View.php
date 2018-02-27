@@ -102,19 +102,18 @@ class View
         preg_match_all($pattern, $content, $this->shortcode);
         // return empty($this->shortcode) ? $content : preg_replace($pattern, '', $content);
 
-        $shortcodeArray = empty($this->shortcode[0]) ? : $this->shortcode[0];
+        $shortcodesArray = empty($this->shortcode[0]) ? : $this->shortcode[0];
         
-        if (is_array($shortcodeArray)) {
+        if (is_array($shortcodesArray)) {
             $i = 0;
             $res = (array) [];
-            foreach ($shortcodeArray as $shortcode) {
-                $res[] = preg_replace("!{{(.*?)}}!si", "\\1", $shortcode);                
-               $content = preg_replace($pattern, $res[$i], $content, 1);
+            foreach ($shortcodesArray as $shortcodeArray) {
+                $res[] = preg_replace("!{{(.*?)}}!si", "\\1", $shortcodeArray);
+                $result = eval('return ' . $res[$i]);
+               $content = preg_replace($pattern, $result, $content, 1);
                $i++;
             }
         }
         return $content;
     }
-
-    
 }
