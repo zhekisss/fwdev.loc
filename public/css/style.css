@@ -2,13 +2,9 @@ body {
     padding: 0;
     margin: 0;
 }
-a:hover{
-    
+
+a:hover {
     text-decoration: none;
-}
-.panel-body {
-    transition: opacity 1s ease-in-out, height 1s ease-in-out;
-    opacity: 0;
 }
 
 ul {
@@ -57,15 +53,12 @@ ul {
     width: 10px;
     left: 90%;
     top: -60%;
-    
 }
-
 
 .menu .menu-item:hover>.submenu {
     opacity: 1;
     visibility: visible;
     transition: opacity .3s ease-in-out;
-    
 }
 
 .submenu {

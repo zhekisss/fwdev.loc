@@ -29,5 +29,6 @@
         </div>
     </div>
 <?= $this->putScripts() ?>
+
 </body>
 </html>
