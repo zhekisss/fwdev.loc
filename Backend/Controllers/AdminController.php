@@ -11,11 +11,18 @@ use Vendor\Core\Base\Controller;
 class AdminController extends Controller
 {
 
+    protected $auth = false;
+
     public function __construct($route)
     {
+        echo __CLASS__;
         
+        parent::__construct($route);
+        if (!$this->auth && __CLASS__ === 'Backend\Controllers\AdminController'){
+            header('Location:/admin/login/');
+            exit;
+        }
         
-       parent::__construct($route);
     }
 
     public function indexAction()

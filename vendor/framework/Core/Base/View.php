@@ -61,9 +61,9 @@ class View
 
         $content = ob_get_clean();
         $content = $this->getScript($content);
-        
+
         $content = $this->runShortcode($content);
-        
+
 
 
         if ($this->layout) {
@@ -103,17 +103,17 @@ class View
         // return empty($this->shortcode) ? $content : preg_replace($pattern, '', $content);
 
         $shortcodeArray = empty($this->shortcode[0]) ? : $this->shortcode[0];
-        
+
         if (is_array($shortcodeArray)) {
             $i = 0;
-            $res = (array) [];
+            $res = (array)[];
             foreach ($shortcodeArray as $shortcode) {
                 $res[] = preg_replace("!{{(.*?)}}!si", "\\1", $shortcode);
                 $result = eval('return ' . $res[$i] . ';');
-               $content = preg_replace($pattern, $result, $content, 1);
-               $i++;
+                $content = preg_replace($pattern, $result, $content, 1);
+                $i++;
             }
         }
         return $content;
-    }    
+    }
 }

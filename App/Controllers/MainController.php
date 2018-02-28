@@ -24,23 +24,7 @@ class MainController extends AppController
         $menuOptions = [];
 
         $cacheMenu = $this->reg->get('cache');
-
-        $fromEmail = [
-            'type' => 'email',
-            'placeholder' => 'Email',
-            'value' => 'Email'
-        ];
-        $fromName = [
-            'type' => 'name',
-            'placeholder' => 'name',
-            'value' => 'name'
-        ];
-
-        $form = $this->reg->get('form')
-            ->add_input('name', $fromName)
-            ->add_input('email', $fromEmail)
-            ->build_form(false);
-
+        
         $menu = $cacheMenu->get('menu');
         $menu = (string)$this->reg->get('menu', $menuOptions);
 
