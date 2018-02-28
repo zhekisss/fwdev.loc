@@ -1,7 +1,7 @@
 <?php
 // Seeeion start
 session_start();
-
+date_default_timezone_set('Asia/Yekaterinburg');
 // Require composer autoload
 require_once "../vendor/autoload.php";
 

@@ -27,7 +27,7 @@ class Db
         \R::setup($db['dsn'], $db['user'], $db['pass'] , $options);
         
         if (!\R::testConnection()) {
-            throw new \Exception('<h3>Ошибка соединения с базой данных</h3>');
+            throw new \Exception('<h1 style="color:red">Ошибка соединения с базой данных</h1>');
         }
         // R::fancyDebug(true);
         // $this->pdo = new \PDO($db['dsn'], $db['user'], $db['pass'] , $options);

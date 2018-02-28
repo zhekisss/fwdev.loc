@@ -1,16 +1,4 @@
-<?php
-
-class Test{
-    
-    public function  __construct() {
-        $this->test = 1;        
-    }
-}
-
-$test = new Test();
-
-echo $test->test;
-
+<?php 
 /**
  * Класс для измерения времени выполнения скрипта или операций
  */
@@ -38,3 +26,8 @@ class Timer
         return microtime(true) - self::$start;
     }
 }
+
+var_dump(filter_list());
+$var = 'zhekisssmail.ru';
+$email = filter_var( $var ,FILTER_VALIDATE_EMAIL);
+echo $email;

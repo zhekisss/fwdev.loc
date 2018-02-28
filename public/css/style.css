@@ -14,16 +14,16 @@ ul {
 }
 
 .menu .menu-item {
-    display: block;
-    float: left;
-    width: 200px;
+    display: inline-block;
+    vertical-align: top;
+    /* width: 200px; */
     height: 35px;
 }
 
 .menu>.menu-item {
     padding: 5px;
     height: 45px;
-    width: 210px;
+    /* width: 210px; */
 }
 
 .menu .menu-item a {
@@ -49,7 +49,7 @@ ul {
 .child>a::after {
     display: block;
     position: relative;
-    content: "->";
+    content: ">";
     width: 10px;
     left: 90%;
     top: -60%;
