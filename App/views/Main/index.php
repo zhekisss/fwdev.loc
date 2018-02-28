@@ -10,7 +10,7 @@
   </div>
 <?php endforeach; ?>
 
-<?= $form ?>
+{{date('d/m/Y H:i', time())}}
 
 <script src="js/main.js" ></script>
 <script src="js/script.js" ></script>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor\Core;
+namespace Vendor\Helper;
 
 /**
  * Вспомогательный класс

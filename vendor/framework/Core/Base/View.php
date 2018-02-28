@@ -108,13 +108,12 @@ class View
             $i = 0;
             $res = (array) [];
             foreach ($shortcodeArray as $shortcode) {
-                $res[] = preg_replace("!{{(.*?)}}!si", "\\1", $shortcode);                
-               $content = preg_replace($pattern, $res[$i], $content, 1);
+                $res[] = preg_replace("!{{(.*?)}}!si", "\\1", $shortcode);
+                $result = eval('return ' . $res[$i] . ';');
+               $content = preg_replace($pattern, $result, $content, 1);
                $i++;
             }
         }
         return $content;
-    }
-
-    
+    }    
 }

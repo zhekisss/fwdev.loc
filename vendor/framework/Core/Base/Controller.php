@@ -30,7 +30,7 @@ abstract class Controller
     *
     * @var string
     */
-    public $layout;
+    public $layout = 'main';
     
     /**
     * Переменные в вид
