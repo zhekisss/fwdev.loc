@@ -3,6 +3,8 @@
 namespace Backend\Controllers;
 
 use Vendor\Core\Base\Controller;
+use Vendor\Core\Auth;
+use Backend\Model\Admin;
 
 
 /**
@@ -11,14 +13,17 @@ use Vendor\Core\Base\Controller;
 class AdminController extends Controller
 {
 
-    protected $auth = false;
+    protected $authorized = false;
+    protected $auth;
+    protected $db;
 
-    public function __construct($route)
+    public function __construct($route, $redirect = true)
     {
-        echo __CLASS__;
-        
+        $this->db = new Admin;
+        $this->auth = new Auth();
         parent::__construct($route);
-        if (!$this->auth && __CLASS__ === 'Backend\Controllers\AdminController'){
+
+        if (!$this->auth->authorized && $redirect){
             header('Location:/admin/login/');
             exit;
         }

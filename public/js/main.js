@@ -15,11 +15,11 @@ window.addEventListener('load', function(e) {
                 panelBody.style.cssText = "opacity:1";
 
                 // JSON.parse(request.responseText);
-                res = JSON.parse(request.responseText) ? JSON.parse(request.responseText) : 'Данных нет!';
+                res = request.responseText;
 
-                panelBody.innerHTML += "<h3>" + res.name + "</h3><p>" + res.content + "</p>";
-                title.innerHTML += res.img;
-                // panelBody.innerHTML = res;
+                // panelBody.innerHTML += "<h3>" + res.name + "</h3><p>" + res.content + "</p>";
+                // title.innerHTML += res.img;
+                panelBody.innerHTML = res;
 
                 console.log(request.responseText);
             }
