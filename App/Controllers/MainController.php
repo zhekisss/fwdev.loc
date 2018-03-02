@@ -10,14 +10,17 @@ class MainController extends AppController
 
     public $model;
 
+    protected $cache;
+
     public function __construct($route)
     {
+        
         $this->model = new Main();
+
         \R::dispense('page');
         parent::__construct($route);
+        $this->cache = $this->reg->get('cache');
     }
-
-    public $cache;
 
     public function indexAction()
     {
@@ -31,7 +34,7 @@ class MainController extends AppController
         $cachePost = $this->reg->get('cache');
         $posts = $cachePost->get('posts');
 
-        if (!$posts || !$menu) {
+        if (!$posts) {
             $posts = \R::findAll('page', 'LIMIT 2');
 
             $postsArr = $this->bean2Arr($posts);
@@ -53,21 +56,20 @@ class MainController extends AppController
         if ($this->is_ajax()) {
 
             \R::dispense('page');
-            $post = $this->reg->cache->get('post');
-            $post = false;
+            $post = $this->cache->get('post');
 
             if (!$post) {
 
-                $postArr = \R::findOne('page', "id={$_POST['id']}")->export();
+                $post = \R::findOne('page', "id={$_POST['id']}")->export();
                 // $postArr = $post->export();
-                $this->reg->cache->set('post', $post);
+                $this->cache->set('post', $post);
 
             }
-            $postArr['title'] = '<i>JSON object</i>';
             
-            // $postArr['reg'] = $this->reg->getList();
-            $postArr = json_encode($postArr);
-            $this->set(compact('postArr'));
+            
+            
+            
+            $this->set(compact('post'));
 
         } else {
 

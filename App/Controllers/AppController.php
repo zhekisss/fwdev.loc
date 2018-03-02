@@ -21,10 +21,12 @@ class AppController extends Controller
     
     public function ajax()
     {
-        $ajaxArray = [
+        $ajaxArrayConf = [
         'ajax'      => 'data',
         'function'  => 'test'
         ];
+
+        
     }
 
     /**
