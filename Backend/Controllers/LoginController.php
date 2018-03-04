@@ -17,28 +17,35 @@ class LoginController extends AdminController
 
     public function indexAction()
     {
-
-        $index = 'Класс: ' . __CLASS__ . '<br> Метод: ' . __FUNCTION__;
-        $this->set(compact('index'));
-
+        $request = new Request;
+        $index = 'Класс: ' . __class__ . '<br> Метод: ' . __FUNCTION__;
+        $session = $request->session['badPassword'];
+        $this->set(compact('session', 'index'));
     }
 
     public function formLoginAction()
     {
         $request = new Request;
         $params = $request->post;
-        $this->authAdmin($params);
-        header('Location: /admin');
+        $auth = $this->authAdmin($params);
+        if ($auth) {
+            header('Location: /admin/login');
+            exit;
+        } elseif ($auth) {
+            header('Location: /admin');
+        } else {
+            header('Location: /admin/login');
+            exit;
+        }
     }
-    
+
     public function authAdmin($params)
     {
 
         // \R::findOne('page', "id={$_POST['id']}")->export();
 
         \R::dispense('user');
-        $query = \R::findAll('user', "WHERE `name` = \"{$params['name']}\" LIMIT 1");
-        $query = $query[1]->export();
+        $query = \R::findAll('user', "WHERE `name` = \"{$params['name']}\" LIMIT 1")[1] ?? false;
 
         $emailPass = isset($params['email']) ? $params['email'] . $params['password'] : false;
         $queryEmailPass = isset($query['password']) ? $query['password'] : false;
@@ -47,25 +54,17 @@ class LoginController extends AdminController
             $user = $query['name'];
 
             if ($query['role'] === 'admin') {
-
                 if ($this->auth->encryptPassword($emailPass, $queryEmailPass)) {
-
                     $this->auth->authorize($user);
                     Session::set('badPassword', '');
-
-                    header("Location: /admin/login/");
-                    exit;
-
+                    return true;
                 } else {
                     Session::set('badPassword', 'Incorrect email or password.');
-                    header('Location: /admin/login/');
-                    exit;
+                    return false;
                 }
             }
         }
-
         Session::set('badPassword', 'Incorrect email or password.');
-        header('Location: /admin/login/');
-        exit;
+        return false;
     }
 }
