@@ -16,10 +16,10 @@ class Auth implements AuthInterface
     {
     }
     
-    public function is_authorized()
-    {
-        return $this->authorized;
-    }
+    // public function is_authorized()
+    // {
+    //     return $this->authorized;
+    // }
     
     public function authorize($user)
     {

@@ -54,12 +54,17 @@ class Request{
         
     }
     
-    public function session($key)
+    public function getSession($key)
     {
         if (isset($this->session[$key])) {
             return $this->session[$key];
         } else{
             return false;
         };
+    }
+
+    public function setSession($key ,$value)
+    {
+        $_SESSION[$key] = $value;
     }
 }

@@ -105,3 +105,5 @@ $form = FormConstructor::begin('/admin',[
     'name' => 'formLogin',
     'method' => 'POST'
     ]);
+
+    echo $form;

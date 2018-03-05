@@ -9,7 +9,7 @@ class Session
 {
 
     /**
-     * Add cookies
+     * 
      * @param $key
      * @param $value
      * @param int $time
@@ -21,22 +21,17 @@ class Session
     }
 
     /**
-     * Get cookies by key
+     * 
      * @param $key
      * @return null
      */
 
     public static function get($key)
     {
-
         if (isset($_SESSION[$key])) {
-
             return $_SESSION[$key];
-
         }
-
         return null;
-
     }
 
     /**

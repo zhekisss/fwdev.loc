@@ -11,7 +11,7 @@ interface AuthInterface
      *
      * @return boolean
      */
-    public function is_authorized();
+    // public function is_authorized();
     
     /**
      * Проверка авторизован ли пользователь
@@ -40,4 +40,3 @@ interface AuthInterface
     public function hashUser();
     
 }
-

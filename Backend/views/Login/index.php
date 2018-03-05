@@ -1,4 +1,4 @@
 
-<?php include_once 'form.php' ?>
-
+<?php include_once 'form.tpl.php' ?>
+<?= $errMessage ?>
 

@@ -18,30 +18,32 @@ class LoginController extends AdminController
     public function indexAction()
     {
 
-        $index = 'Класс: ' . __CLASS__ . '<br> Метод: ' . __FUNCTION__;
-        $this->set(compact('index'));
+        $request = new Request;
+        $errMessage = $request->session['falseLogin'] ?? '';
+        $index = 'Класс: ' . __class__ . '<br> Метод: ' . __FUNCTION__;
+        $this->set(compact('index', 'errMessage'));
+        Session::set('falseLogin', '');
 
     }
 
-    public function formLoginAction()
+    public function LoginActionAction()
     {
         $request = new Request;
         $params = $request->post;
-        $this->authAdmin($params);
+
+        empty($params['name']) && empty($params['email']) && empty($params['password']) ? Session::set('falseLogin', '<p style="color:red">Пожалуйста, заполните все поля формы.</p>') : $this->authAdmin($params);
         header('Location: /admin');
+        exit;
     }
-    
+
     public function authAdmin($params)
     {
-
-        // \R::findOne('page', "id={$_POST['id']}")->export();
-
         \R::dispense('user');
-        $query = \R::findAll('user', "WHERE `name` = \"{$params['name']}\" LIMIT 1");
-        $query = $query[1]->export();
+        $query = \R::findAll('user', "WHERE `name` = '{$params['name']}' LIMIT 1")[1]->export();
+
 
         $emailPass = isset($params['email']) ? $params['email'] . $params['password'] : false;
-        $queryEmailPass = isset($query['password']) ? $query['password'] : false;
+        $queryEmailPass = isset($query['password_hash']) ? $query['password_hash'] : false;
 
         if (!empty($query)) {
             $user = $query['name'];
@@ -51,21 +53,16 @@ class LoginController extends AdminController
                 if ($this->auth->encryptPassword($emailPass, $queryEmailPass)) {
 
                     $this->auth->authorize($user);
-                    Session::set('badPassword', '');
-
-                    header("Location: /admin/login/");
-                    exit;
-
+                    Session::set('falseLogin', '');
+                    return true;
                 } else {
-                    Session::set('badPassword', 'Incorrect email or password.');
-                    header('Location: /admin/login/');
-                    exit;
+                    Session::set('falseLogin', '<p>Неверный адрес эелектронной почты или пароль.</p>');
+                    return false;
                 }
             }
         }
 
-        Session::set('badPassword', 'Incorrect email or password.');
-        header('Location: /admin/login/');
-        exit;
+        Session::set('falseLogin', '<p>Неверный адрес эелектронной почты или пароль.</p>');
+        return false;
     }
 }
