@@ -49,9 +49,7 @@ class LoginController extends AdminController
             $user = $query['name'];
 
             if ($query['role'] === 'admin') {
-
                 if ($this->auth->encryptPassword($emailPass, $queryEmailPass)) {
-
                     $this->auth->authorize($user);
                     Session::set('falseLogin', '');
                     return true;

@@ -30,4 +30,10 @@ class Timer
 var_dump(filter_list());
 $var = 'zhekisssmail.ru';
 $email = filter_var( $var ,FILTER_VALIDATE_EMAIL);
-echo $email;
+// echo $email;
+
+$pass = '123456789';
+
+$passHashed = password_hash($pass, PASSWORD_BCRYPT);
+echo $passHashed;
+// var_dump(password_verify($pass,$passHashed));
