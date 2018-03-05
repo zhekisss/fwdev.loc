@@ -102,7 +102,6 @@ class View
         preg_match_all($pattern, $content, $this->shortcode);
         // return empty($this->shortcode) ? $content : preg_replace($pattern, '', $content);
 
-<<<<<<< HEAD
         $shortcodesArray = empty($this->shortcode[0]) ? : $this->shortcode[0];
         
         if (is_array($shortcodesArray)) {
@@ -110,21 +109,9 @@ class View
             $res = (array) [];
             foreach ($shortcodesArray as $shortcodeArray) {
                 $res[] = preg_replace("!{{(.*?)}}!si", "\\1", $shortcodeArray);
-                $result = eval('return ' . $res[$i]);
+                $result = eval('return ' . $res[$i] . ';');
                $content = preg_replace($pattern, $result, $content, 1);
                $i++;
-=======
-        $shortcodeArray = empty($this->shortcode[0]) ? : $this->shortcode[0];
-
-        if (is_array($shortcodeArray)) {
-            $i = 0;
-            $res = (array)[];
-            foreach ($shortcodeArray as $shortcode) {
-                $res[] = preg_replace("!{{(.*?)}}!si", "\\1", $shortcode);
-                $result = eval('return ' . $res[$i] . ';');
-                $content = preg_replace($pattern, $result, $content, 1);
-                $i++;
->>>>>>> ed328aa390fa90e16f4bdb2d7249cda1fa2e5dfa
             }
         }
         return $content;
