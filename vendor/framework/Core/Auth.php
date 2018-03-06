@@ -14,6 +14,7 @@ class Auth implements AuthInterface
     
     public function __construct()
     {
+        $this->authorized = $_SESSION['auth_authorized'];
     }
     
     public function is_authorized()

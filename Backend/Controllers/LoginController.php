@@ -19,7 +19,7 @@ class LoginController extends AdminController
     {
         $request = new Request;
         $index = 'Класс: ' . __class__ . '<br> Метод: ' . __FUNCTION__;
-        $session = $request->session['badPassword'];
+        $session = $request->session['badPassword'] ?? null;
         $this->set(compact('session', 'index'));
     }
 
@@ -28,11 +28,12 @@ class LoginController extends AdminController
         $request = new Request;
         $params = $request->post;
         $auth = $this->authAdmin($params);
-        if ($auth) {
+        if (!$auth) {
             header('Location: /admin/login');
             exit;
         } elseif ($auth) {
             header('Location: /admin');
+            exit;
         } else {
             header('Location: /admin/login');
             exit;

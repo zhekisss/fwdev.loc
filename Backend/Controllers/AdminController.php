@@ -5,6 +5,8 @@ namespace Backend\Controllers;
 use Vendor\Core\Base\Controller;
 use Vendor\Core\Auth;
 use Backend\Model\Admin;
+use Vendor\Helper\Session;
+
 
 
 /**
@@ -22,12 +24,11 @@ class AdminController extends Controller
         $this->db = new Admin;
         $this->auth = new Auth();
         parent::__construct($route);
-
+        $auth = $this->auth->authorized;
         if (!$this->auth->authorized && $redirect){
             header('Location:/admin/login/');
             exit;
-        }
-        
+        } 
     }
 
     public function indexAction()
