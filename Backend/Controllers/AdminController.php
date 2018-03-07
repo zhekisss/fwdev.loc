@@ -5,6 +5,9 @@ namespace Backend\Controllers;
 use Vendor\Core\Base\Controller;
 use Vendor\Core\Auth;
 use Backend\Model\Admin;
+use Vendor\Helper\Session;
+use Vendor\Helper\Redirect;
+
 
 
 /**
@@ -22,25 +25,26 @@ class AdminController extends Controller
         $this->db = new Admin;
         $this->auth = new Auth();
         parent::__construct($route);
-
+        $auth = $this->auth->authorized;
         if (!$this->auth->authorized && $redirect){
-            header('Location:/admin/login/');
+            Redirect::run('login');
             exit;
-        }
-        
+        } 
     }
 
     public function indexAction()
     {
         $index = 'Класс: ' . __CLASS__ . '<br> Метод: ' . __FUNCTION__;
-        
-        $this->set(compact('index'));
+        $message = '<h2>Вы авторизованы!!!<h2>';
+        $this->set(compact('index', 'message'));
     }
 
     public function logoutAction()
     {
-        $index = 'Класс: ' . __CLASS__ . '<br> Метод: ' . __FUNCTION__;
-        
-        $this->set(compact('index'));
+        $this->view = '';
+        $auth = new Auth;
+        $auth->unAuthorize();
+        Redirect::run('login');
+        exit;
     }
 }

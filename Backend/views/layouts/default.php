@@ -10,6 +10,7 @@
 
 <body>
 <h3>DEFAULT</h3>
+
   <?= $content ?>
 
 </body>

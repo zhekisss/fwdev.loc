@@ -10,34 +10,34 @@ use Vendor\Core\Registry;
 abstract class Controller
 {
     public $rb;
-    
+
     /**
-    * Путь
-    *
-    * @var array
-    */
+     * Путь
+     *
+     * @var array
+     */
     public $route = [];
-    
+
     /**
-    * Вид
-    *
-    * @var string
-    */
+     * Вид
+     *
+     * @var string
+     */
     public $view;
-    
+
     /**
-    * Шаблон
-    *
-    * @var string
-    */
+     * Шаблон
+     *
+     * @var string
+     */
     public $layout = 'main';
-    
+
     /**
-    * Переменные в вид
-    * пользовательские данные
-    *
-    * @var array
-    */
+     * Переменные в вид
+     * пользовательские данные
+     *
+     * @var array
+     */
     public $vars;
 
     /**
@@ -46,36 +46,49 @@ abstract class Controller
      * @var object
      */
     public $reg;
-    
+
     public $di;
-    
+
     public function __construct($route)
     {
         $this->reg = Registry::getInstance();
         $this->route = $route;
         $this->view = $route['action'];
     }
-    
+
     public function getView()
     {
         $vObj = new View($this->route, $this->layout, $this->view);
         $vObj->render($this->vars);
     }
-    
+
     public function set($vars)
     {
         $this->vars = $vars;
     }
-    
+
     public function is_ajax()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            
+
             $this->layout = 'ajax';
             $this->view = 'ajax';
             return true;
         }
-        
+
         return false;
+    }
+
+    public function bean2Arr($posts)
+    {
+        $count = 0;
+        foreach ($posts as $post) {
+            $count++;
+            $postsArr[] = $post->export();
+        }
+        if ($count === 1) {
+            $postsArr = $postsArr[0];
+        }
+        return $postsArr;
     }
 }

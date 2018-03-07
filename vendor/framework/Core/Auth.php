@@ -14,6 +14,7 @@ class Auth implements AuthInterface
     
     public function __construct()
     {
+        $this->authorized = $_SESSION['auth_authorized'] ?? null;
     }
     
     // public function is_authorized()
@@ -32,7 +33,7 @@ class Auth implements AuthInterface
     {
         // Session::delete('auth_authorized');
         // Session::delete('auth_user');
-        setSession(session_name(), session_id(), time()-60*60*24);
+        // setSession(session_name(), session_id(), time()-60*60*24);
         session_destroy();
     }
     

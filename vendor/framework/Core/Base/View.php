@@ -50,18 +50,16 @@ class View
         ob_start();
 
         if (is_file($file_view)) {
-
             require_once $file_view;
         } elseif (!empty($file_view)) {
             // echo "<p>Не найден вид <b>{$file_view}</b></p>";
-            require_once APP . "/views/default/index.php";
+            // require_once APP . "/views/default/index.php";
 
         }
 
 
         $content = ob_get_clean();
         $content = $this->getScript($content);
-
         $content = $this->runShortcode($content);
 
 
@@ -71,7 +69,7 @@ class View
             if (is_file($file_layout)) {
                 require_once $file_layout;
             } else {
-                echo "<p>Не найден шаблон <b>{$file_layout}</b></p>";
+                Throw new Exception("Не найден шаблон <b>{$file_layout}</b>");
             }
         }
     }
@@ -102,16 +100,16 @@ class View
         preg_match_all($pattern, $content, $this->shortcode);
         // return empty($this->shortcode) ? $content : preg_replace($pattern, '', $content);
 
-        $shortcodeArray = empty($this->shortcode[0]) ? : $this->shortcode[0];
-
-        if (is_array($shortcodeArray)) {
+        $shortcodesArray = empty($this->shortcode[0]) ? : $this->shortcode[0];
+        
+        if (is_array($shortcodesArray)) {
             $i = 0;
-            $res = (array)[];
-            foreach ($shortcodeArray as $shortcode) {
-                $res[] = preg_replace("!{{(.*?)}}!si", "\\1", $shortcode);
+            $res = (array) [];
+            foreach ($shortcodesArray as $shortcodeArray) {
+                $res[] = preg_replace("!{{(.*?)}}!si", "\\1", $shortcodeArray);
                 $result = eval('return ' . $res[$i] . ';');
-                $content = preg_replace($pattern, $result, $content, 1);
-                $i++;
+               $content = preg_replace($pattern, $result, $content, 1);
+               $i++;
             }
         }
         return $content;

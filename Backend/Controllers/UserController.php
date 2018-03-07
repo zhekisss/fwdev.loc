@@ -2,7 +2,7 @@
 
 namespace Backend\Controllers;
 
-class LogoutController
+class UserController
 {
     
 }

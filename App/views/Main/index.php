@@ -10,7 +10,7 @@
   </div>
 <?php endforeach; ?>
 
-{{date('d/m/Y H:i', time())}}
 
+<h2>{{ date('r',time()) }}</h2>
 <script src="js/main.js" ></script>
 <script src="js/script.js" ></script>

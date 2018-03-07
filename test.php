@@ -32,7 +32,7 @@ $var = 'zhekisssmail.ru';
 $email = filter_var( $var ,FILTER_VALIDATE_EMAIL);
 // echo $email;
 
-$pass = '123456789';
+$pass = 'admin1@mail.ru123456789';
 
 $passHashed = password_hash($pass, PASSWORD_BCRYPT);
 echo $passHashed;

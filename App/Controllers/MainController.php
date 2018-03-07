@@ -85,17 +85,4 @@ class MainController extends AppController
         $this->view = '';
         echo 'qwerty';
     }
-
-    public function bean2Arr($posts)
-    {
-        $count = 0;
-        foreach ($posts as $post) {
-            $count++;
-            $postsArr[] = $post->export();
-        }
-        if ($count === 1) {
-            $postsArr = $postsArr[0];
-        }
-        return $postsArr;
-    }
 }
