@@ -5,7 +5,7 @@ date_default_timezone_set('Asia/Yekaterinburg');
 // Require composer autoload
 require_once "../vendor/autoload.php";
 
-// Определение каталога с ядром на основе настроек из composer.json
+// Определение каталога с ядром на основе настроек из "composer.json"
 $composerJson = json_decode(file_get_contents('../composer.json'));
 $require = $composerJson->autoload;
 foreach ($require as $key => $values) {
@@ -58,7 +58,7 @@ function autoload($class)
     
     // new App;
 
-// Проыерка окружения - "admin" или "user"
+// Проверка окружения - "admin" или "user"
 if (ENV !== 'admin') {
 
     require_once APP . "/routes.php";
@@ -66,7 +66,7 @@ if (ENV !== 'admin') {
     try {
         Router::dispatch($query);
     } catch (Exception $e) {
-        echo $e->getMessage();
+        echo '<p>' . $e->getMessage() . '</p>';
     }
 
 // Подключение админки
