@@ -35,7 +35,7 @@ class MainController extends AppController
         $posts = $cachePost->get('posts');
 
         if (!$posts) {
-            $posts = \R::findAll('page', 'LIMIT 2');
+            $posts = \R::findAll('page');
 
             $postsArr = $this->bean2Arr($posts);
 

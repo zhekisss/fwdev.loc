@@ -1,4 +1,3 @@
 tmp/cache/*
-public/img/*
+Public/img/*
 node_modules/*
-tmp/*

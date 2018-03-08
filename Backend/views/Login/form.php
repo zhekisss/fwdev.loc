@@ -1,4 +1,4 @@
-<form action="/admin/login/loginAction/" method="POST">
+<form action="/admin/login/login-action/" method="POST">
     <label required for="username">username</label>
     <input required type="text" name="name">
     <label required for="email">email</label>

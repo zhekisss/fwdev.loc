@@ -16,7 +16,7 @@ ul {
 .menu .menu-item {
     display: inline-block;
     vertical-align: top;
-    /* width: 200px; */
+    width: 200px;
     height: 35px;
 }
 

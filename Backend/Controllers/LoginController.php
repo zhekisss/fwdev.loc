@@ -44,15 +44,15 @@ class LoginController extends AdminController
 
     public function authAdmin($params)
     {
-        \R::dispense('user');
-        $query = \R::find('user', "WHERE `name` = '{$params['name']}' LIMIT 1")[1] ?? null;
+        // \R::dispense('user');
+        $query = \R::findOne('user', "WHERE `name` = '{$params['name']}'") ?? null;
         // $query = is_array($query) ?: $query[1]->export();
 
         $emailPass = isset($params['email']) ? $params['email'] . $params['password'] : false;
-        $queryEmailPass = isset($query['password_hash']) ? $query['password_hash'] : false;
+        $queryEmailPass = isset($query->password) ? $query->password : false;
 
         if (!empty($query)) {
-            $user = $query['name'];
+            $user = $query->name;
             if ($query['role'] === 'admin') {
                 if ($this->auth->encryptPassword($emailPass, $queryEmailPass)) {
                     $this->auth->authorize($user);

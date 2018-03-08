@@ -13,6 +13,7 @@ abstract class Model
     public function __construct()
     {
         $this->pdo = Db::instance();
+        \R::dispense($this->table);
     }
 
     public function query($sql)
@@ -26,9 +27,9 @@ abstract class Model
         return $this->pdo->query($sql);
     }
 
-    public function findOne($id, $field = '')
+    public function findOne($id, $field)
     {
-        $field = $field ? : $this->primKey;
+        $field = $field ?? $this->primKey;
         $sql = "SELECT * FROM {$this->table} WHERE $field = ? LIMIT 1";
         return $this->pdo->query($sql, [$id]);
     }

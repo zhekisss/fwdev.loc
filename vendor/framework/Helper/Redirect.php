@@ -5,7 +5,7 @@ namespace Vendor\Helper;
 class Redirect
 {
 
-    public static function run($value, $code = '', $message = '')
+    public static function run($value, $code = '200', $message = 'OK')
     {
 
         switch ($value) {
@@ -25,7 +25,7 @@ class Redirect
                 exit;
 
             default:
-                header("Location: {$value} {$code} {$message}");
+                header("{$value} {$code} {$message}");
                 exit;
 
         }

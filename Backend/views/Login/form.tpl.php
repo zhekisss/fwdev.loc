@@ -15,4 +15,4 @@
     <input type="submit" name="" placeholder="Отправить" required />
 </p>
 </form>
-<p class="error"><?= $session ?></p>
+<p class="error"><?= $session ?? NULL ?></p>
