@@ -14,7 +14,7 @@ class Registry
     private function __construct($selfObjects)
     {
 
-        $config = require_once ROOT . "/config/config.php";
+        $config = require_once ROOT . "/config/registry_config.php";
 
         if (isset($config['components'])) {
             foreach ($config['components'] as $name => $component) {

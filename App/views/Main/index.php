@@ -3,11 +3,8 @@
 <button class="btn" id="send" type="submit">Кнопка</button>
 
 <?php foreach ($posts as $post): ?>
-  <h1><?=  $post['name']; ?></h1>
+  <h1><a href="/page/<?= $post->link ?>"><?=  $post['name']; ?></a></h1>
   <p><?=  $post['time']; ?></p>
-  <div class="panel-body">
-    <?=  $post['content']; ?>
-  </div>
 <?php endforeach; ?>
 
 

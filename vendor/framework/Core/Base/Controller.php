@@ -3,9 +3,9 @@
 namespace Vendor\Core\Base;
 
 use Vendor\Core\Base\View;
-use Vendor\Core\Base\Di;
+// use Vendor\Core\Base\Di;
 use Vendor\Core\Db;
-use Vendor\Core\Registry;
+use Vendor\Core\Registry;   
 
 abstract class Controller
 {
@@ -70,25 +70,29 @@ abstract class Controller
     public function is_ajax()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-
-            $this->layout = 'ajax';
-            $this->view = 'ajax';
             return true;
         }
-
         return false;
     }
 
     public function bean2Arr($posts)
     {
-        $count = 0;
-        foreach ($posts as $post) {
-            $count++;
-            $postsArr[] = $post->export();
+        if (!empty($posts)) {
+            $count = 0;
+            foreach ($posts as $post) {
+                $count++;
+                $postsArr[] = $post->export();
+            }
+            if ($count === 1) {
+                $postsArr = $postsArr[0];
+            }
+            return $postsArr;
         }
-        if ($count === 1) {
-            $postsArr = $postsArr[0];
-        }
-        return $postsArr;
+        return null;
+    }
+
+    public function error404()
+    {
+        
     }
 }

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/js/main.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     
@@ -15,7 +16,7 @@
         <div class="row">
             <header>
                 <?= $menu ?>
-                <div class="clear"></div>
+                
                 <h1>MAIN</h1>
                 <h3>Header</h3>
             </header>
@@ -27,7 +28,7 @@
                 <h1>FOOTER</h1>
                 </footer>
         </div>
-    </div>
+    
 <?= $this->putScripts() ?>
 
 </body>

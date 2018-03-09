@@ -2,26 +2,26 @@
 
 namespace App\Controllers;
 
+use App\Models\Page;
+
 class PageController extends AppController
 {
 
     public function indexAction()
     {
-        // echo "Создан объект класса " . __class__ . " и выполнен метод " . __METHOD__;
-        // debug($this->route);
+        echo "Создан объект класса " . __class__ . " и выполнен метод " . __METHOD__;
     }
 
     public function viewAction()
     {
-
+        $model = new Page;
         $link = $this->route['alias'];
-// var_dump(\R::testConnection());
-        //if ($page = \R::findOne('page', 'link = ?', [$link])) {
-        //    $this->set(compact('page'));
-        //    return true;
-        //} else {
-        //    return false;
-        //}
+
+        if ($page = \R::findOne('page', 'WHERE link=?', [$link])) {
+            $this->set(compact('page'));
+        } else {
+            return false;
+        }
     }
 
     public function testAction()

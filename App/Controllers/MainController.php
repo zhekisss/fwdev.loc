@@ -14,10 +14,7 @@ class MainController extends AppController
 
     public function __construct($route)
     {
-        
-        $this->model = new Main();
-
-        \R::dispense('page');
+        $this->model = new Main();        
         parent::__construct($route);
         $this->cache = $this->reg->get('cache');
     }
@@ -47,7 +44,7 @@ class MainController extends AppController
         $method = $this->methodName(__class__, __FUNCTION__);
         $title = 'MAIN TITLE';
         $this->set(compact('title', 'posts', 'postsArr', 'menu', 'form'));
-        return true;
+        
     }
 
     public function testAction()
@@ -65,9 +62,6 @@ class MainController extends AppController
                 $this->cache->set('post', $post);
 
             }
-            
-            
-            
             
             $this->set(compact('post'));
 

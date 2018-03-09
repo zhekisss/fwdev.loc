@@ -11,10 +11,13 @@ class AppController extends Controller
 {
     public $reg;
 
+    public $ajax = false;
+
     public $layout = 'main';
     
     public function __construct($route)
     {
+        $this->ajax = $this->is_ajax();
         
         parent::__construct($route);
     }
