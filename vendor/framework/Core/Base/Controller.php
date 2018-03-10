@@ -51,9 +51,14 @@ abstract class Controller
 
     public function __construct($route)
     {
-        $this->reg = Registry::getInstance();
-        $this->route = $route;
-        $this->view = $route['action'];
+     
+        if (method_exists($this, $route['action'] . 'Action')) {
+
+            $this->reg = Registry::getInstance();
+            $this->route = $route;
+            $this->view = $route['action'];
+
+        }
     }
 
     public function getView()

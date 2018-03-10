@@ -44,9 +44,8 @@ class LoginController extends AdminController
 
     public function authAdmin($params)
     {
-        // \R::dispense('user');
-        $query = \R::findOne('user', "WHERE `name` = '{$params['name']}'") ?? null;
-        // $query = is_array($query) ?: $query[1]->export();
+        
+        $query = \R::findOne('user', "WHERE `name` = ?", [$params['name']]) ?? null;
 
         $emailPass = isset($params['email']) ? $params['email'] . $params['password'] : false;
         $queryEmailPass = isset($query->password) ? $query->password : false;
