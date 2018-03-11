@@ -6,5 +6,8 @@ use Vendor\Core\Base\Model;
 
 class Login extends Model
 {
-    public $table =  'user';
+    use ModelTrait;
+
+    protected $table = 'user';
+    public $user;
 }

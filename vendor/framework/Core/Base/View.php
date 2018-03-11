@@ -5,21 +5,21 @@ namespace Vendor\Core\Base;
 class View
 {
     /**
-     * Текущий путь
+     * Текущий путь.
      *
      * @var array
      */
     public $route;
 
     /**
-     * Текущий вид
+     * Текущий вид.
      *
      * @var string
      */
     public $view;
 
     /**
-     * Текущий шаблон
+     * Текущий шаблон.
      *
      * @var string
      */
@@ -44,7 +44,8 @@ class View
 
     public function render($vars)
     {
-        !is_array($vars) ? : extract($vars);
+        extract($this->rebuildArr($vars));
+        
         $file_view = empty($this->view) ? '' : APP . "/views/{$this->route['controller']}/{$this->view}.php";
 
         ob_start();
@@ -54,30 +55,27 @@ class View
         } elseif (!empty($file_view)) {
             // echo "<p>Не найден вид <b>{$file_view}</b></p>";
             // require_once APP . "/views/default/index.php";
-
         }
 
-
         $content = ob_get_clean();
-        $content = $this->getScript($content);
+        $content = $this->getScripts($content);
         $content = $this->runShortcode($content);
-
-
 
         if ($this->layout) {
             $file_layout = APP . "/views/layouts/{$this->layout}.php";
             if (is_file($file_layout)) {
                 require_once $file_layout;
             } else {
-                Throw new Exception("Не найден шаблон <b>{$file_layout}</b>");
+                throw new Exception("Не найден шаблон <b>{$file_layout}</b>");
             }
         }
     }
 
-    protected function getScript($content)
+    protected function getScripts($content)
     {
-        $pattern = "#<script.*?>.*?</script>#si";
+        $pattern = '#<script.*?>.*?</script>#si';
         preg_match_all($pattern, $content, $this->script);
+
         return empty($this->script) ? $content : preg_replace($pattern, '', $content);
     }
 
@@ -89,29 +87,47 @@ class View
             foreach ($scripts as $script) {
                 echo $script;
             }
+
             return ob_get_clean();
         }
+
         return '';
     }
 
     protected function runShortcode($content)
     {
-        $pattern = "#{{.*?}}#si";
+        $pattern = '#{{.*?}}#si';
         preg_match_all($pattern, $content, $this->shortcode);
         // return empty($this->shortcode) ? $content : preg_replace($pattern, '', $content);
 
         $shortcodesArray = empty($this->shortcode[0]) ? : $this->shortcode[0];
-        
+
         if (is_array($shortcodesArray)) {
             $i = 0;
-            $res = (array) [];
+            $res = (array)[];
             foreach ($shortcodesArray as $shortcodeArray) {
-                $res[] = preg_replace("!{{(.*?)}}!si", "\\1", $shortcodeArray);
+                $res[] = preg_replace('!{{(.*?)}}!si', '\\1', $shortcodeArray);
                 $result = eval('return ' . $res[$i] . ';');
-               $content = preg_replace($pattern, $result, $content, 1);
-               $i++;
+                $content = preg_replace($pattern, $result, $content, 1);
+                ++$i;
             }
         }
+
         return $content;
+    }
+
+    /**
+     * Перестраивает массив $vars
+     *
+     * @param (array) $vars
+     * @return array
+     */
+    public function rebuildArr($vars)
+    {
+        foreach ($vars[0] as $key => $val) {
+            $vars[$key] = $val;
+        }
+        unset($vars[0]);
+        return $vars;
     }
 }

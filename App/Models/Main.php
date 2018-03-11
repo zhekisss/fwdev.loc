@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use \Vendor\Base\Model;
+use Vendor\Core\Base\Model;
 
-class Main extends \Vendor\Core\Base\Model
+class Main extends Model
 {
     public $table = 'page';
 

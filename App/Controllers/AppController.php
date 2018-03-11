@@ -5,7 +5,7 @@ namespace App\Controllers;
 use Vendor\Core\Base\Controller;
 
 /**
- * Общий контроллер для фроненд части сайта
+ * Общий контроллер для фронтенд части сайта.
  */
 class AppController extends Controller
 {
@@ -14,33 +14,47 @@ class AppController extends Controller
     public $ajax = false;
 
     public $layout = 'main';
-    
+
     public function __construct($route)
     {
-        $this->ajax = $this->is_ajax();
-        
-        parent::__construct($route);
+        if (method_exists($this, $route['action'] . 'Action')) {
+            $model = "App\\Models\\" . $route['controller'];
+            $this->model = new $model;
+            $this->ajax = $this->is_ajax();
+            parent::__construct($route);
+            $this->getWidgets();
+        }
     }
-    
+
     public function ajax()
     {
         $ajaxArrayConf = [
-        'ajax'      => 'data',
-        'function'  => 'test'
+            'ajax' => 'data',
+            'function' => 'test',
         ];
-
-        
     }
 
     /**
-     * Возвращает форматированную строку с именем класса и метода, в котором выполнена функция
+     * Возвращает форматированную строку с именем класса и метода, в котором выполнена функция.
      *
      * @param string $class
      * @param string $function
+     *
      * @return string
      */
-    public function methodName($class = __CLASS__, $function = __FUNCTION__)
+    public function methodName($class = __class__, $function = __FUNCTION__)
     {
         return 'Class: ' . $class . "\n<br> Method: " . $function;
+    }
+
+    public function getWidgets()
+    {
+        $cacheMenu = $this->reg->get('cache');
+        $menu = $cacheMenu->get('menu');
+        if (!$menu) {
+            $menu = (string)$this->reg->get('menu');
+            $cacheMenu->set('menu', $menu);
+        }
+        $this->vars['menu'] = $menu;
     }
 }

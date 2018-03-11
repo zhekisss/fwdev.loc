@@ -8,8 +8,6 @@ class PageController extends AdminController
 {
     public function __construct($route)
     {
-        
-        
         $this->layout = 'main';
         $this->route = $route;
 
@@ -22,41 +20,35 @@ class PageController extends AdminController
 
         $pages = $model->getPages();
 
-        $index = 'Класс: ' . __CLASS__ . '<br> Метод: ' . __FUNCTION__;
-        
-        $this->set(compact('index', 'pages'));
+        $index = 'Класс: '.__CLASS__.'<br> Метод: '.__FUNCTION__;
 
+        $this->set(compact('index', 'pages'));
     }
 
-    public function savepageAction()
+    public function saveAction()
     {
-        $model = new Page();
-        $model->savepage();
+        $modelPage = new Page();
+        $modelPage->save();
         $this->set(compact('page'));
     }
 
-    public function newpageAction()
-    {        
+    public function newAction()
+    {
         $this->view = 'view';
-        // $page = new \stdClass;
-        // $page->name = 'Название';
-        // $page->content = 'Содержимое';
-        // $page->time = date('Y - m - s',time());
-        // $page->category = 'Категория';
         $this->set(compact('page'));
     }
 
     public function viewAction()
     {
         $model = new Page();
-        $page = $model->editPage($this->route['alias']);
+        $page = $model->edit($this->route['alias']);
         $this->set(compact('page'));
     }
 
     public function userAction()
     {
-        $index = 'Класс: ' . __CLASS__ . '<br> Метод: ' . __FUNCTION__;
-        
+        $index = 'Класс: '.__CLASS__.'<br> Метод: '.__FUNCTION__;
+
         $this->set(compact('index'));
     }
 }

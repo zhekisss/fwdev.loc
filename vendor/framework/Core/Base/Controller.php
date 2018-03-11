@@ -2,31 +2,29 @@
 
 namespace Vendor\Core\Base;
 
-use Vendor\Core\Base\View;
 // use Vendor\Core\Base\Di;
-use Vendor\Core\Db;
-use Vendor\Core\Registry;   
+use Vendor\Core\Registry;
 
 abstract class Controller
 {
     public $rb;
 
     /**
-     * Путь
+     * Путь.
      *
      * @var array
      */
     public $route = [];
 
     /**
-     * Вид
+     * Вид.
      *
      * @var string
      */
     public $view;
 
     /**
-     * Шаблон
+     * Шаблон.
      *
      * @var string
      */
@@ -34,14 +32,14 @@ abstract class Controller
 
     /**
      * Переменные в вид
-     * пользовательские данные
+     * пользовательские данные.
      *
      * @var array
      */
     public $vars;
 
     /**
-     * Registry
+     * Registry.
      *
      * @var object
      */
@@ -51,13 +49,10 @@ abstract class Controller
 
     public function __construct($route)
     {
-     
-        if (method_exists($this, $route['action'] . 'Action')) {
-
+        if (method_exists($this, $route['action'].'Action')) {
             $this->reg = Registry::getInstance();
             $this->route = $route;
             $this->view = $route['action'];
-
         }
     }
 
@@ -69,14 +64,18 @@ abstract class Controller
 
     public function set($vars)
     {
-        $this->vars = $vars;
+        $this->vars[] = $vars;
     }
 
     public function is_ajax()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $this->layout = 'ajax';
+            $this->view = '';
+
             return true;
         }
+
         return false;
     }
 
@@ -85,19 +84,16 @@ abstract class Controller
         if (!empty($posts)) {
             $count = 0;
             foreach ($posts as $post) {
-                $count++;
+                ++$count;
                 $postsArr[] = $post->export();
             }
             if ($count === 1) {
                 $postsArr = $postsArr[0];
             }
+
             return $postsArr;
         }
-        return null;
-    }
 
-    public function error404()
-    {
-        
+        return null;
     }
 }

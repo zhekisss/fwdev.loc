@@ -8,28 +8,28 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     
-    <title><?php // $title ?></title>
+    <title><?php // $title?></title>
 
 </head>
 <body>
     <div class="container">
         <div class="row">
             <header>
-                <?= $menu ?>
+                <?= $menu ?? null; ?>
                 
                 <h1>MAIN</h1>
                 <h3>Header</h3>
             </header>
-            <h4>Current view file is "<?= __FILE__ ?>"</h4>
+            <h4>Current view file is "<?= __FILE__; ?>"</h4>
             <div class="content">
-                <?= $content ?>
+                <?= $content; ?>
             </div>
             <footer>
                 <h1>FOOTER</h1>
                 </footer>
         </div>
     
-<?= $this->putScripts() ?>
+<?= $this->putScripts(); ?>
 
 </body>
 </html>
