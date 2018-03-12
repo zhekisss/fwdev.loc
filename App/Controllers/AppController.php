@@ -15,12 +15,13 @@ class AppController extends Controller
 
     public $layout = 'main';
 
-    public function __construct($route)
+    public $view = 'page';
+
+    public function __construct( array $route)
     {
         if (method_exists($this, $route['action'] . 'Action')) {
             $model = "App\\Models\\" . $route['controller'];
-            $this->model = new $model;
-            $this->ajax = $this->is_ajax();
+            $this->model = new $model ?? null;
             parent::__construct($route);
             $this->getWidgets();
         }

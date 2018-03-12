@@ -45,7 +45,7 @@ class View
     public function render($vars)
     {
         extract($this->rebuildArr($vars));
-        
+
         $file_view = empty($this->view) ? '' : APP . "/views/{$this->route['controller']}/{$this->view}.php";
 
         ob_start();
@@ -124,10 +124,13 @@ class View
      */
     public function rebuildArr($vars)
     {
-        foreach ($vars[0] as $key => $val) {
-            $vars[$key] = $val;
+        if (isset($vars[0])) {
+
+            foreach ($vars[0] as $key => $val) {
+                $vars[$key] = $val;
+            }
+            unset($vars[0]);
         }
-        unset($vars[0]);
         return $vars;
     }
 }

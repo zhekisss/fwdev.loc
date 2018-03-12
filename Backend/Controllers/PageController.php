@@ -10,18 +10,14 @@ class PageController extends AdminController
     {
         $this->layout = 'main';
         $this->route = $route;
-
         parent::__construct($route);
     }
 
     public function indexAction()
     {
         $model = new Page();
-
         $pages = $model->getPages();
-
-        $index = 'Класс: '.__CLASS__.'<br> Метод: '.__FUNCTION__;
-
+        $index = 'Класс: ' . __class__ . '<br> Метод: ' . __FUNCTION__;
         $this->set(compact('index', 'pages'));
     }
 
@@ -47,8 +43,7 @@ class PageController extends AdminController
 
     public function userAction()
     {
-        $index = 'Класс: '.__CLASS__.'<br> Метод: '.__FUNCTION__;
-
+        $index = 'Класс: ' . __class__ . '<br> Метод: ' . __FUNCTION__;
         $this->set(compact('index'));
     }
 }

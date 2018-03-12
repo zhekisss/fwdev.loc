@@ -4,7 +4,7 @@ namespace Vendor\Core;
 
 class Router
 {
-    
+
     /**
      * Undocumented variable
      *
@@ -25,7 +25,7 @@ class Router
      * @var string
      */
     protected static $alias = '';
-    
+
     /**
      * Счетчик итераций цикла поиска подходящего шаблона в методе matchRoute()
      *
@@ -110,14 +110,15 @@ class Router
         if (self::matchRoute($url)) {
             $controller = "{$env}\\Controllers\\" . self::upperCamelCase(self::$route['controller']) . 'Controller';
             if (class_exists($controller)) {
+                self::$route['action'] = self::lowerCamelCase(self::$route['action']);
+                $action = self::$route['action'] . "Action";
                 $cObj = new $controller(self::$route);
-                $action = self::lowerCamelCase(self::$route['action']) . "Action";
                 // Проверка существования метода '...Action'
                 if (method_exists($cObj, $action)) {
                     if ($cObj->$action() !== false) {
                         $cObj->getView();
                         return true;
-                    }else {
+                    } else {
                         unset($cObj);
                         self::errorController();
                         return false;

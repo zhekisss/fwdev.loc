@@ -22,19 +22,21 @@ class AdminController extends Controller
 
     public function __construct($route, $redirect = true)
     {
-        $this->db = new Admin;
-        $this->auth = new Auth();
-        parent::__construct($route);
-        $auth = $this->auth->authorized;
-        if (!$this->auth->authorized && $redirect){
-            Redirect::run('login');
-            exit;
-        } 
+        if (method_exists($this, $route['action'] . 'Action')) {
+            $this->db = new Admin;
+            $this->auth = new Auth();
+            parent::__construct($route);
+            $auth = $this->auth->authorized;
+            if (!$this->auth->authorized && $redirect) {
+                Redirect::run('login');
+                exit;
+            }
+        }
     }
 
     public function indexAction()
     {
-        $index = 'Класс: ' . __CLASS__ . '<br> Метод: ' . __FUNCTION__;
+        $index = 'Класс: ' . __class__ . '<br> Метод: ' . __FUNCTION__;
         $message = '<h2>Вы авторизованы!!!<h2>';
         $this->set(compact('index', 'message'));
     }

@@ -15,7 +15,13 @@
     <div class="container">
         <div class="row">
             <header>
-                <?= $menu ?? null; ?>
+                <ul class="menu-">
+                    <li class="menu-item-"><a href="/">Main</a></li>
+                    <li class="menu-item-"><a href="/page">Page</a></li>
+                    <li class="menu-item-"><a href="/posts">Posts</a></li>
+                    <li class="menu-item-"><a href="/posts-new">Posts-new</a></li>
+                    <li class="menu-item-"><a href="/contacts">Contacts</a></li>
+                </ul>
                 
                 <h1>MAIN</h1>
                 <h3>Header</h3>

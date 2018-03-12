@@ -4,10 +4,12 @@ namespace App\Controllers;
 
 class PostsNewController extends AppController
 {
+    
     public function indexAction()
     {
-        echo "Создан объект класса " . __CLASS__ . " и выполнен метод ";
-        debug($this->route);
+        $this->view = 'page';
+        $index = "Создан объект класса " . __CLASS__ . " и выполнен метод ";
+        
     }
 
     public function testAction()

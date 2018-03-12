@@ -96,4 +96,10 @@ abstract class Controller
 
         return null;
     }
+
+    protected static function lowerCamelCase($name)
+    {
+        $name = str_replace(' ', '',ucwords(str_replace('-',' ', $name)));
+        return lcfirst($name);
+    }
 }

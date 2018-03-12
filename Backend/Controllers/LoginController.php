@@ -29,8 +29,8 @@ class LoginController extends AdminController
 
     public function LoginActionAction()
     {
-        $request = new Request();
-        $params = $request->post;
+        $params = $this->reg->get('req')->post;
+        // $params = $request->post;
         $auth = $this->authAdmin($params);
         if (!$auth) {
             Redirect::run('login');
@@ -48,8 +48,7 @@ class LoginController extends AdminController
         $model = new LoginModel();
         $model->getUser($params);
         $query = $model->user;
-        // $query = \R::findOne('user', "WHERE `name` = ?", [$params['name']]) ?? null;
-
+        
         $emailPass = isset($params['email']) ? $params['email'].$params['password'] : false;
         $queryEmailPass = isset($query->password) ? $query->password : false;
 

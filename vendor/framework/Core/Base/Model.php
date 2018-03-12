@@ -13,7 +13,6 @@ abstract class Model
     public function __construct()
     {
         $this->pdo = Db::instance();
-        \R::dispense($this->table);
     }
 
     public function query($sql)
