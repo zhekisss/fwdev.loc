@@ -98,8 +98,6 @@ class View
     {
         $pattern = '#{{.*?}}#si';
         preg_match_all($pattern, $content, $this->shortcode);
-        // return empty($this->shortcode) ? $content : preg_replace($pattern, '', $content);
-
         $shortcodesArray = empty($this->shortcode[0]) ? : $this->shortcode[0];
 
         if (is_array($shortcodesArray)) {
