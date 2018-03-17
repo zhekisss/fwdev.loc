@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
     
-    <title><?php // $title?></title>
+    <title><?= $page->title ?></title>
 
 </head>
 <body>
@@ -22,7 +22,6 @@
                     <li class="menu-item-"><a href="/posts-new">Posts-new</a></li>
                     <li class="menu-item-"><a href="/contacts">Contacts</a></li>
                 </ul>
-                
                 <h1>MAIN</h1>
                 <h3>Header</h3>
             </header>

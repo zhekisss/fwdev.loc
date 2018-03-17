@@ -24,11 +24,11 @@ class MainController extends AppController
 
         // $menu = $cacheMenu->get('menu');
         // $menu = (string) $this->reg->get('menu', $menuOptions);
-
+        $posts = false;
         $cachePost = $this->reg->get('cache');
-        $posts = $cachePost->get('posts');
+        // $posts = $cachePost->get('posts');
 
-        if (!$posts) {
+        if (!$posts ?? null) {
             $posts = \R::findAll('page');
 
             $postsArr = $this->bean2Arr($posts);
@@ -63,7 +63,13 @@ class MainController extends AppController
 
     public function viewAction(Type $var = null)
     {
-        $this->view = '';
-        echo 'qwerty';
+        $this->view = $this->route['alias'] ?? '';
+        $link = $this->route['alias'];
+        
+        if ($page = \R::findOne('main_pages', 'WHERE link=?', [$link])) {
+            $this->set(compact('page'));
+        } else {
+            return false;
+        }
     }
 }

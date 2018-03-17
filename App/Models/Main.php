@@ -6,7 +6,7 @@ use Vendor\Core\Base\Model;
 
 class Main extends Model
 {
-    public $table = 'page';
+    public $table = 'main_pages';
 
     public function _construct()
     {

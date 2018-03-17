@@ -6,5 +6,5 @@ require_once 'routes.php';
 try {
     Router::dispatch($query);
 } catch (Exception $e) {
-    echo $e->getMessage();
+    echo '<p>' . $e->getMessage() . '</p>';
 }
