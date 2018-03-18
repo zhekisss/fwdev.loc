@@ -22,6 +22,7 @@
                     <li class="menu-item-"><a href="/posts-new">Posts-new</a></li>
                     <li class="menu-item-"><a href="/contacts">Contacts</a></li>
                 </ul>
+                <?= $menu ?>
                 <h1>MAIN</h1>
                 <h3>Header</h3>
             </header>
