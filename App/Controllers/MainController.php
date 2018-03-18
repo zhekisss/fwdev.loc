@@ -13,17 +13,16 @@ class MainController extends AppController
     public function __construct($route)
     {
         parent::__construct($route);
-        $this->cache = $this->reg->get('cache');
     }
 
     public function indexAction()
     {
-        // $menuOptions = [];
+        $menuOptions = [];
 
-        // $cacheMenu = $this->reg->get('cache');
+        $cacheMenu = $this->reg->get('cache');
 
-        // $menu = $cacheMenu->get('menu');
-        // $menu = (string) $this->reg->get('menu', $menuOptions);
+        $menu = $cacheMenu->get('menu');
+        $menu = (string) $this->reg->get('menu', $menuOptions);
         $posts = false;
         $cachePost = $this->reg->get('cache');
         // $posts = $cachePost->get('posts');
@@ -37,8 +36,10 @@ class MainController extends AppController
         }
 
         $method = $this->methodName(__class__, __FUNCTION__);
-        $title = 'MAIN TITLE';
-        $this->set(compact('title', 'posts', 'postsArr', 'form'));
+
+        $page = new \StdClass;
+        $page->title = 'MAIN';
+        $this->set(compact('posts', 'postsArr', 'form', 'page'));
     }
 
     public function testAction()
@@ -49,7 +50,7 @@ class MainController extends AppController
 
             if (!$post) {
                 $post = \R::findOne('page', "id={$_POST['id']}")->export();
-                
+
                 $this->cache->set('post', $post);
             }
 
@@ -61,11 +62,11 @@ class MainController extends AppController
         }
     }
 
-    public function viewAction(Type $var = null)
+    public function viewAction()
     {
         $this->view = $this->route['alias'] ?? '';
         $link = $this->route['alias'];
-        
+
         if ($page = \R::findOne('main_pages', 'WHERE link=?', [$link])) {
             $this->set(compact('page'));
         } else {
