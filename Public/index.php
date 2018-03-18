@@ -16,11 +16,13 @@ list($env) = explode('/', $query);
 
 // Проверка окружения - "admin" или "user"
 if ($env !== 'admin') {
+  unset($env);
     require_once  '../config/config_main.php';
     require_once APP . '/app.php';
 
 // Подключение админки
 } else {
+  unset($env);
     require_once  '../config/back_conf.php';
     require_once APP . '/admin.php';
 }

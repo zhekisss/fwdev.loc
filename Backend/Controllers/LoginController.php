@@ -5,8 +5,10 @@ namespace Backend\Controllers;
 use Vendor\Helper\Request;
 use Vendor\Helper\Redirect;
 use Vendor\Helper\Session;
-use Backend\Model\Login as LoginModel;
 
+/**
+ * [LoginController description]
+ */
 class LoginController extends AdminController
 {
     public $layout = 'main';
@@ -18,6 +20,10 @@ class LoginController extends AdminController
         parent::__construct($route, false);
     }
 
+    /**
+    * [indexAction description]
+    * @return [type] [description]
+    */
     public function indexAction()
     {
         $request = new Request();
@@ -27,6 +33,10 @@ class LoginController extends AdminController
         $this->set(compact('session', 'index'));
     }
 
+
+    /**
+    *  Метод для обработки данных формы авторизации
+    **/
     public function LoginActionAction()
     {
         $params = $this->reg->get('req')->post;
@@ -34,6 +44,7 @@ class LoginController extends AdminController
         $auth = $this->authAdmin($params);
         if (!$auth) {
             Redirect::run('login');
+            exit;
         } elseif ($auth) {
             Redirect::run('admin');
             exit;
@@ -43,12 +54,16 @@ class LoginController extends AdminController
         }
     }
 
-    public function authAdmin($params)
+    /**
+     * [authAdmin description]
+     * @param  [array] $params [description]
+     * @return [type]         [description]
+     */
+    private function authAdmin($params)
     {
-        $model = new LoginModel();
-        $model->getUser($params);
-        $query = $model->user;
-        
+        $this->model->getUser($params);
+        $query = $this->model->user;
+
         $emailPass = isset($params['email']) ? $params['email'].$params['password'] : false;
         $queryEmailPass = isset($query->password) ? $query->password : false;
 

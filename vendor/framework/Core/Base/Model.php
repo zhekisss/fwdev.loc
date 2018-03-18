@@ -4,6 +4,10 @@ namespace Vendor\Core\Base;
 
 use Vendor\Core\Db;
 
+/**
+ * Абстрактный класс модлели
+ * @var [type]
+ */
 abstract class Model
 {
     protected $pdo;

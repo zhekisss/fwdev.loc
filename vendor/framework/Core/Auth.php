@@ -12,6 +12,7 @@ class Auth implements AuthInterface
     protected $password;
     protected $hash;
     
+    
     public function __construct()
     {
         $this->authorized = $_SESSION['auth_authorized'] ?? null;

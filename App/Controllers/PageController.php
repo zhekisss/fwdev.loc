@@ -7,7 +7,22 @@ class PageController extends AppController
 
     public function indexAction()
     {
-        echo "Создан объект класса " . __class__ . " и выполнен метод " . __METHOD__;
+        $posts = false;
+        $cachePost = $this->reg->get('cache');
+        // $posts = $cachePost->get('posts');
+
+        if (!$posts ?? null) {
+            $posts = \R::findAll('page');
+
+            $postsArr = $this->bean2Arr($posts);
+
+            $cachePost->set('posts', $posts);
+        }
+
+        $method = $this->methodName(__class__, __FUNCTION__);
+        $title = 'MAIN TITLE';
+        $this->set(compact('title', 'posts', 'postsArr', 'form'));
+    
     }
 
     public function viewAction()

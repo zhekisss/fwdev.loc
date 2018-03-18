@@ -15,8 +15,7 @@ class PageController extends AdminController
 
     public function indexAction()
     {
-        $model = new Page();
-        $pages = $model->getPages();
+        $pages = $this->model->getPages();
         $index = 'Класс: ' . __class__ . '<br> Метод: ' . __FUNCTION__;
         $this->set(compact('index', 'pages'));
     }

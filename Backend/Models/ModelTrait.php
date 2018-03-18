@@ -1,6 +1,6 @@
 <?php
 
-namespace Backend\Model;
+namespace Backend\Models;
 
 trait ModelTrait
 {

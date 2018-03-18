@@ -67,7 +67,7 @@ abstract class Controller
         $this->vars[] = $vars;
     }
 
-    public function is_ajax()
+    protected function is_ajax()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             $this->layout = 'ajax';
@@ -79,7 +79,7 @@ abstract class Controller
         return false;
     }
 
-    public function bean2Arr($posts)
+    protected function bean2Arr($posts)
     {
         if (!empty($posts)) {
             $count = 0;
@@ -95,11 +95,5 @@ abstract class Controller
         }
 
         return null;
-    }
-
-    protected static function lowerCamelCase($name)
-    {
-        $name = str_replace(' ', '',ucwords(str_replace('-',' ', $name)));
-        return lcfirst($name);
     }
 }
