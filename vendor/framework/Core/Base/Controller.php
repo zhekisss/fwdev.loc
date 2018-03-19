@@ -2,9 +2,12 @@
 
 namespace Vendor\Core\Base;
 
-// use Vendor\Core\Base\Di;
 use Vendor\Core\Registry;
 
+/**
+ * Родительский контроллер приложения
+ *
+ */
 abstract class Controller
 {
     public $rb;
@@ -17,7 +20,7 @@ abstract class Controller
     public $route = [];
 
     /**
-     * Вид.
+     * Текущий вид
      *
      * @var string
      */
@@ -31,7 +34,7 @@ abstract class Controller
     public $layout = 'main';
 
     /**
-     * Переменные в вид
+     * Переменные в вид,
      * пользовательские данные.
      *
      * @var array
@@ -45,11 +48,18 @@ abstract class Controller
      */
     public $reg;
 
-    public $di;
+    /**
+     * Текущая модель
+     */
+    public $model;
 
     public function __construct($route)
     {
+        // Проверка существования метода (Action`а) в созданном экземпляре класса 'Controller'
         if (method_exists($this, $route['action'].'Action')) {
+            $classModel = NAME_SPACE . "Models\\" . $route['controller'];
+            // Создание объекта модели по имени контроллера
+            $this->model = class_exists($classModel) ? new $classModel : null;
             $this->reg = Registry::getInstance();
             $this->route = $route;
             $this->view = $route['action'];

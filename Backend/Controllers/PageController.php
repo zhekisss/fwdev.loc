@@ -4,6 +4,9 @@ namespace Backend\Controllers;
 
 use Backend\Model\Page;
 
+/**
+ * Управление страницами сайта
+ */
 class PageController extends AdminController
 {
     public function __construct($route)
@@ -13,36 +16,39 @@ class PageController extends AdminController
         parent::__construct($route);
     }
 
+    /**
+     * Показывает список страниц
+     */
     public function indexAction()
     {
         $pages = $this->model->getPages();
-        $index = 'Класс: ' . __class__ . '<br> Метод: ' . __FUNCTION__;
-        $this->set(compact('index', 'pages'));
+        $this->set(compact('pages'));
     }
 
+    /**
+     * Сохранение отредактированной или вновь созданной страницы
+     */
     public function saveAction()
     {
-        $modelPage = new Page();
-        $modelPage->save();
+        $this->model->save();
         $this->set(compact('page'));
     }
 
+    /**
+     * Создание новой страницы
+     */
     public function newAction()
     {
         $this->view = 'view';
         $this->set(compact('page'));
     }
 
-    public function viewAction()
+    /**
+     * Редактирование страницы
+     */
+    public function editAction()
     {
-        $model = new Page();
-        $page = $model->edit($this->route['alias']);
+        $page = $this->model->edit($this->route['alias']);
         $this->set(compact('page'));
-    }
-
-    public function userAction()
-    {
-        $index = 'Класс: ' . __class__ . '<br> Метод: ' . __FUNCTION__;
-        $this->set(compact('index'));
     }
 }

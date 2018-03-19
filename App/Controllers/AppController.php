@@ -20,8 +20,6 @@ class AppController extends Controller
     public function __construct( array $route)
     {
         if (method_exists($this, $route['action'] . 'Action')) {
-            $model = "App\\Models\\" . $route['controller'];
-            $this->model = new $model ?? null;
             parent::__construct($route);
             $this->getWidgets();
         }

@@ -4,8 +4,6 @@ namespace Backend\Controllers;
 
 use Vendor\Core\Base\Controller;
 use Vendor\Core\Auth;
-use Backend\Model\Admin;
-use Vendor\Helper\Session;
 use Vendor\Helper\Redirect;
 
 /**
@@ -19,8 +17,6 @@ class AdminController extends Controller
     public function __construct($route, $redirect = true)
     {
         if (method_exists($this, $route['action'] . 'Action')) {
-            $classModel = "Backend\\Models\\" . $route['controller'];
-            $this->model = class_exists($classModel) ? new $classModel : null;
             $this->auth = new Auth();
             parent::__construct($route);
             $auth = $this->auth->authorized;
