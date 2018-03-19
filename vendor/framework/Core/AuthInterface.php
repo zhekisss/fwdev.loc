@@ -5,14 +5,14 @@ namespace Vendor\Core;
 interface AuthInterface
 {
 
-    
+
     /**
      * Авторизация
      *
      * @return boolean
      */
     // public function is_authorized();
-    
+
     /**
      * Проверка авторизован ли пользователь
      *
@@ -20,9 +20,9 @@ interface AuthInterface
      * @return boolean
      */
     public function authorize($user);
-        
+
     /**
-     * Logout
+     * Выход
      *
      * @return boolean
      */
@@ -35,8 +35,8 @@ interface AuthInterface
      * @return void
      */
     public function encryptPassword($password, $passwordHash);
-    
+
 
     public function hashUser();
-    
+
 }

@@ -19,8 +19,8 @@ class AdminController extends Controller
     public function __construct($route, $redirect = true)
     {
         if (method_exists($this, $route['action'] . 'Action')) {
-            $model = "Backend\\Models\\" . $route['controller'];
-            $this->model = new $model ?? null;
+            $classModel = "Backend\\Models\\" . $route['controller'];
+            $this->model = class_exists($classModel) ? new $classModel : null;
             $this->auth = new Auth();
             parent::__construct($route);
             $auth = $this->auth->authorized;

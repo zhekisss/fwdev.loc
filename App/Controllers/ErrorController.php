@@ -2,10 +2,12 @@
 
 namespace App\Controllers;
 
+use Vendor\Core\Base\Controller;
+
 /**
  * Вызов страницы 404
  */
-class ErrorController extends AppController
+class ErrorController extends Controller
 {
     public $query;
 

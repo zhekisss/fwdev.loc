@@ -52,9 +52,8 @@ class View
 
         if (is_file($file_view)) {
             require_once $file_view;
-        } elseif (!empty($file_view)) {
-            // echo "<p>Не найден вид <b>{$file_view}</b></p>";
-            // require_once APP . "/views/default/index.php";
+            } elseif (!empty($file_view)) {
+            require_once APP . "/views/default/index.php";
         }
 
         $content = ob_get_clean();
@@ -70,6 +69,7 @@ class View
             }
         }
     }
+    
 
     protected function getScripts($content)
     {
@@ -123,12 +123,11 @@ class View
     public function rebuildArr($vars)
     {
         if (isset($vars[0])) {
-
             foreach ($vars[0] as $key => $val) {
                 $vars[$key] = $val;
             }
             unset($vars[0]);
         }
-        return $vars;
+        return is_array($vars) ? $vars : [] ;
     }
 }
