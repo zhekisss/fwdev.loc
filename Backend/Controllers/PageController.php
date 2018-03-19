@@ -32,6 +32,7 @@ class PageController extends AdminController
     {
         $this->view = '';
         $params = $this->reg->get('req')->post;
+        $params['link'] = $this->reg->get('str')->translit($params['title']);
         $this->model->save($params);        
     }
 

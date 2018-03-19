@@ -4,7 +4,7 @@ $config = [
     'components' => [
         'cache' => 'Vendor\Components\Cache',
         'menu' => 'Vendor\Widgets\Menu\Menu',
-        'str' => 'Vendor\Helper\stringManipulation',
+        'str' => 'Vendor\Helper\StringManipulation',
         'req' => 'Vendor\Helper\Request'
     ]
 ];

@@ -18,7 +18,7 @@ trait ModelTrait
 
     public function getPageByID($id)
     {
-        return \R::load('post', $id);
+        return \R::load($this->table, $id);
     }
 
     public function edit($link)
@@ -28,10 +28,10 @@ trait ModelTrait
 
     public function save($params)
     {
-        // $page = \R::dispense($this->table);
         $page = \R::load($this->table, $params['id']);
         $page->title = $params['title'];
         $page->content = $params['content'];
+        $page->link = $params['link'];
         \R::store($page);
     }
 
