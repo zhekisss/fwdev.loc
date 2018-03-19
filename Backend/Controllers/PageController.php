@@ -30,8 +30,9 @@ class PageController extends AdminController
      */
     public function saveAction()
     {
-        $this->model->save();
-        $this->set(compact('page'));
+        $this->view = '';
+        $params = $this->reg->get('req')->post;
+        $this->model->save($params);        
     }
 
     /**
@@ -39,8 +40,7 @@ class PageController extends AdminController
      */
     public function newAction()
     {
-        $this->view = 'view';
-        $this->set(compact('page'));
+        $this->view = 'edit';
     }
 
     /**

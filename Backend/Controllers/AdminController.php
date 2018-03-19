@@ -29,9 +29,8 @@ class AdminController extends Controller
 
     public function indexAction()
     {
-        $index = 'Класс: ' . __class__ . '<br> Метод: ' . __FUNCTION__;
-        $message = '<h2>Вы авторизованы!!!<h2>';
-        $this->set(compact('index', 'message'));
+        $message = 'Вы авторизованы';
+        $this->set(compact('message'));
     }
 
     public function logoutAction()

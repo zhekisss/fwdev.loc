@@ -2,45 +2,33 @@
 
 namespace Backend\Controllers;
 
-use Vendor\Helper\Request;
 use Vendor\Helper\Redirect;
 use Vendor\Helper\Session;
 
 /**
- * [LoginController description]
+ * Вход в админ панель
  */
 class LoginController extends AdminController
 {
     public $layout = 'main';
     public $view;
-    protected $model;
+    public $model;
 
     public function __construct($route)
     {
         parent::__construct($route, false);
     }
 
-    /**
-    * [indexAction description]
-    * @return [type] [description]
-    */
     public function indexAction()
     {
-        $request = new Request();
-        $index = 'Класс: '.__CLASS__.'<br> Метод: '.__FUNCTION__;
-        $session = $request->session['falseLogin'] ?? null;
+        $message = Session::get('falseLogin') ?? null;
         Session::delete('falseLogin');
-        $this->set(compact('session', 'index'));
+        $this->set(compact('message'));
     }
 
-
-    /**
-    *  Метод для обработки данных формы авторизации
-    **/
     public function LoginActionAction()
     {
         $params = $this->reg->get('req')->post;
-        // $params = $request->post;
         $auth = $this->authAdmin($params);
         if (!$auth) {
             Redirect::run('login');
@@ -55,9 +43,7 @@ class LoginController extends AdminController
     }
 
     /**
-     * [authAdmin description]
-     * @param  [array] $params [description]
-     * @return [type]         [description]
+     * Метод для обработки данных формы авторизации
      */
     private function authAdmin($params)
     {
@@ -73,21 +59,17 @@ class LoginController extends AdminController
                 if ($this->auth->encryptPassword($emailPass, $queryEmailPass)) {
                     $this->auth->authorize($user);
                     Session::set('falseLogin', '');
-
                     return true;
                 } else {
                     Session::set('falseLogin', '<p>Неверный адрес эелектронной почты или пароль.</p>');
-
                     return false;
                 }
             }
         } else {
             Session::set('falseLogin', '<p>Неверный адрес эелектронной почты или пароль.</p>');
-
             return false;
         }
         Session::set('falseLogin', '<p>Заполните все поля.</p>');
-
         return false;
     }
 }
