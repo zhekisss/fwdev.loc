@@ -44,6 +44,7 @@ class LoginController extends AdminController
 
     /**
      * Метод для обработки данных формы авторизации
+     * Авторизация админа
      */
     private function authAdmin($params)
     {
