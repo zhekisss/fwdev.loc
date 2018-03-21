@@ -4,10 +4,8 @@ namespace Vendor\Helper;
 
 class Redirect
 {
-
     public static function run($value, $code = '200', $message = 'OK')
     {
-
         switch ($value) {
             case 404:
                 header("HTTP/1.0 404 Not Found");
@@ -22,6 +20,9 @@ class Redirect
                 exit;
             case 'admin':
                 header('Location: /admin');
+                exit;
+            case 'page':
+                header('Location: /admin/page');
                 exit;
 
             default:
