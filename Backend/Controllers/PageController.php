@@ -4,6 +4,7 @@ namespace Backend\Controllers;
 
 use Backend\Model\Page;
 use Vendor\Helper\Redirect;
+use Vendor\Helper\Session;
 
 /**
  * Управление страницами сайта
@@ -32,9 +33,16 @@ class PageController extends AdminController
     public function saveAction()
     {
         $this->view = '';
-        $params = $this->reg->get('req')->post;
+
+        $req = $this->reg->get('req');
+        $params = $req->post;
+        $queryStr = strpos($req->server['HTTP_REFERER'], '/new') ? true : false;
         $params['link'] = $this->reg->get('str')->translit($params['title']);
-        $this->model->save($params);
+        if(!$this->model->edit($params['link']) && $queryStr) {
+          $this->model->save($params);
+        } else {
+          Session::set('pageExists','Не возможно создать. Страница с таким названием уже существует.');
+        }
         Redirect::run('page');
     }
 

@@ -21,7 +21,7 @@ class AppController extends Controller
     {
         if (method_exists($this, $route['action'] . 'Action')) {
             parent::__construct($route);
-            $this->getWidgets();
+            $this->getWidgets('menu');
         }
     }
 
@@ -46,14 +46,14 @@ class AppController extends Controller
         return 'Class: ' . $class . "\n<br> Method: " . $function;
     }
 
-    public function getWidgets()
+    public function getWidgets($name)
     {
-        $cacheMenu = $this->reg->get('cache');
-        $menu = $cacheMenu->get('menu');
-        if (!$menu) {
-            $menu = (string)$this->reg->get('menu');
-            $cacheMenu->set('menu', $menu);
+        $cache = $this->reg->get('cache');
+        $widget = $cache->get($name);
+        if (!$widget) {
+            $widget = (string)$this->reg->get($name);
+            $cache->set($name, $widget);
         }
-        $this->vars['menu'] = $menu;
+        $this->vars[$name] = $widget;
     }
 }

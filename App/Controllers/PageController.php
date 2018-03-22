@@ -9,7 +9,7 @@ class PageController extends AppController
     {
         $posts = false;
         $cachePost = $this->reg->get('cache');
-        // $posts = $cachePost->get('posts');
+        $posts = $cachePost->get('posts');
 
         if (!$posts ?? null) {
             $posts = \R::findAll('page');
@@ -18,10 +18,11 @@ class PageController extends AppController
 
             $cachePost->set('posts', $posts);
         }
-
-        $method = $this->methodName(__class__, __FUNCTION__);
-        $title = 'MAIN TITLE';
-        $this->set(compact('title', 'posts', 'postsArr', 'form'));
+        $page = new \StdClass;
+        $page->title = 'Страницы';
+        
+        
+        $this->set(compact('page', 'posts', 'postsArr'));
     
     }
 
@@ -29,9 +30,13 @@ class PageController extends AppController
     {
 
         $link = $this->route['alias'];
-
-        if ($page = \R::findOne('page', 'WHERE link=?', [$link])) {
+        $cachePage = $this->reg->get('cache');
+        
+        if($page = $cachePage->get($link)){
             $this->set(compact('page'));
+        } elseif ($page = \R::findOne('page', 'WHERE link=? LIMIT 1', [$link])) {
+            $this->set(compact('page'));
+            $cachePage->set($link, $page);
         } else {
             return false;
         }
