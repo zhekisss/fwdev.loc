@@ -6,7 +6,5 @@ use Vendor\Core\Base\Model;
 
 class Page extends Model
 {
-    use ModelTrait;
-
-    
+    use ModelTrait;    
 }

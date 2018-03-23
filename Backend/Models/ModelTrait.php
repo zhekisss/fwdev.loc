@@ -11,7 +11,7 @@ trait ModelTrait
         \R::dispense($this->table);
     }
 
-    public function getPages()
+    public function get()
     {
         return \R::findAll($this->table, 'ORDER BY `time`');
     }
@@ -21,9 +21,16 @@ trait ModelTrait
         return \R::load($this->table, $id);
     }
 
-    public function edit($link)
+    public function getPageByLink($link)
     {
         return \R::findOne($this->table, '`link`=?', [$link]);
+    }
+
+    public function edit($id)
+    {
+
+        $page = $this->getPageById($id);
+        return $page;
     }
 
     public function save($params)
@@ -38,5 +45,11 @@ trait ModelTrait
     public function getUser($params)
     {
         $this->user = \R::findOne('user', 'WHERE `name` = ?', [$params['name']]) ?? null;
+    }
+
+    public function del($id)
+    {
+      $page = $this->getPageById($id);
+      \R::trash($page);
     }
 }

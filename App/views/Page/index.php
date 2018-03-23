@@ -1,6 +1,5 @@
-<h1>PAGE</h1>
-
 <?php foreach ($posts as $post): ?>
-  <h1><a href="/page/<?= $post->link ?>"><?=  $post->title; ?></a></h1>
+  <h3><a href="/page/<?= $post->link ?>"><?=  $post->title; ?></a></h3>
   <h4>Время публикации: <?=  $post->time; ?></h4>
+  <p><?= mb_substr($post->content,0,160, 'UTF-8'); ?>...</p>
 <?php endforeach; ?>

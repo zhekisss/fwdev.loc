@@ -15,7 +15,6 @@ class ErrorController extends Controller
     {
         global $query;
         $this->query = $query;
-
         $this->layout = '';
 
         $route = [
@@ -27,7 +26,7 @@ class ErrorController extends Controller
     }
 
     public function indexAction()
-    {        
+    {
         $query = $this->query;
         $title = 'ERROR 404';
         $this->set(compact('query', 'title'));

@@ -51,7 +51,7 @@ class AppController extends Controller
         $cache = $this->reg->get('cache');
         $widget = $cache->get($name);
         if (!$widget) {
-            $widget = (string)$this->reg->get($name);
+            $widget = $this->reg->get($name);
             $cache->set($name, $widget);
         }
         $this->vars[$name] = $widget;

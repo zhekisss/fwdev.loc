@@ -23,25 +23,27 @@ class PageController extends AdminController
      */
     public function indexAction()
     {
-        $pages = $this->model->getPages();
-        $this->set(compact('pages'));
+        $pages = $this->model->get();
+        $pageExists = Session::get('pageExists');
+        Session::set('pageExists', '');
+        $this->set(compact('pages', 'pageExists'));
     }
 
     /**
      * Сохранение отредактированной или вновь созданной страницы
+     *
      */
     public function saveAction()
     {
         $this->view = '';
-
         $req = $this->reg->get('req');
         $params = $req->post;
-        $queryStr = strpos($req->server['HTTP_REFERER'], '/new') ? true : false;
         $params['link'] = $this->reg->get('str')->translit($params['title']);
-        if(!$this->model->edit($params['link']) && $queryStr) {
-          $this->model->save($params);
+        $page = $this->model->getPageByLink($params['link']);
+        if ($page && $params['action'] === 'new') {
+            Session::set('pageExists', '<p class="text-danger"><b>Не возможно создать. Страница с таким названием уже существует.</b></p>');
         } else {
-          Session::set('pageExists','Не возможно создать. Страница с таким названием уже существует.');
+            $this->model->save($params);
         }
         Redirect::run('page');
     }
@@ -52,6 +54,8 @@ class PageController extends AdminController
     public function newAction()
     {
         $this->view = 'edit';
+        $action = 'new';
+        $this->set(compact('action'));
     }
 
     /**
@@ -59,7 +63,15 @@ class PageController extends AdminController
      */
     public function editAction()
     {
-        $page = $this->model->edit($this->route['alias']);
+        $page = $this->model->edit($this->reg->get('req')->get['id']);
+        $this->reg->get('cache')->del($page->link);
         $this->set(compact('page'));
+    }
+
+    public function deleteAction()
+    {
+       $this->view = '';
+       $this->model->del($this->reg->get('req')->get['id']);
+       Redirect::run('page');
     }
 }
