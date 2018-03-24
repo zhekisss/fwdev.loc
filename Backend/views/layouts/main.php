@@ -17,7 +17,11 @@
       <header>
 
         <h3>MAIN</h3>
-    
+        
+        <a href="/">Сайт</a>
+        <a href="/admin/page/">Страницы</a>
+        <a href="/admin/logout/">Выход</a>
+        
       </header>
     </div>
   </div>

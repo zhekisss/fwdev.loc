@@ -29,12 +29,13 @@ class PageController extends AppController
     public function viewAction()
     {
 
-        $link = $this->route['alias'];
+        $link = $this->reg->get('str')->translit($this->route['alias']);
+
         $cachePage = $this->reg->get('cache');
         
         if($page = $cachePage->get($link)){
             $this->set(compact('page'));
-        } elseif ($page = \R::findOne('page', 'WHERE link=? LIMIT 1', [$link])) {
+        } elseif ($page = \R::findOne('page', 'WHERE link=?', [$link])) {
             $this->set(compact('page'));
             $cachePage->set($link, $page);
         } else {

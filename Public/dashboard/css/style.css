@@ -1,3 +1,22 @@
 label {
     display: block;
 }
+
+a{
+    position: relative;
+    display: inline-block;
+    margin: 11px;
+    padding: 9px;
+    background: #607D8B;
+    color: white;
+    box-shadow: 0px 9px 5px -5px rgba(0, 0, 0, 0.288);
+    border: 1px solid transparent;
+    transition: background .1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+a:hover{
+    color: #607D8B;
+    background-color: white;
+    border: 1px solid #607D8B;
+}
+

@@ -5,5 +5,5 @@
   <p><input type="text" name="time" value="<?= $page->time ?? null; ?>"></p>
   <p><textarea name="content" cols="150" rows="10"><?= $page->content ?? null; ?></textarea></p>
   <p><input type="text" name="category" value="<?= $page->category ?? null; ?>"></p>
-  <p><input type="submit" value="Сохранить"/></p>
+  <p><input class="btn" type="submit" value="Сохранить"/></p>
 </form>

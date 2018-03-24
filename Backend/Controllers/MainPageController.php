@@ -2,14 +2,7 @@
 
 namespace Backend\Controllers;
 
-use Backend\Model\Page;
-use Vendor\Helper\Redirect;
-use Vendor\Helper\Session;
-
-/**
- * Управление страницами сайта
- */
-class PageController extends AdminController
+class MainPageController extends AdminController
 {
     public function __construct($route)
     {

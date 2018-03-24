@@ -2,12 +2,8 @@
 
 namespace Backend\Models;
 
-use Vendor\Core\Base\Model;
-
-class Login extends Model
+class Login extends AdminModel
 {
-    use ModelTrait;
-
     protected $table = 'user';
     public $user;
 }

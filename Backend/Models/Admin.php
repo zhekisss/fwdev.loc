@@ -2,9 +2,7 @@
 
 namespace Backend\Models;
 
-use Vendor\Core\Base\Model;
-
-class Admin extends Model
+class Admin extends AdminModel
 {
     public $table =  'user';
 }

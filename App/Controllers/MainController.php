@@ -35,8 +35,6 @@ class MainController extends AppController
             $cachePost->set('posts', $posts);
         }
 
-        $method = $this->methodName(__class__, __FUNCTION__);
-
         $page = new \StdClass;
         $page->title = 'MAIN';
         $this->set(compact('posts', 'postsArr', 'form', 'page'));

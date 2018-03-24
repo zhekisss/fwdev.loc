@@ -2,7 +2,9 @@
 
 namespace Backend\Models;
 
-trait ModelTrait
+use Vendor\Core\Base\Model;
+
+class AdminModel extends Model
 {
     public function __construct($table = null)
     {

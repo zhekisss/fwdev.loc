@@ -6,16 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="/js/main.js"></script>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    
-    <title><?= $page->title ?></title>
-
+    <link rel="stylesheet" href="/css/style.css">    
+    <title><?= $page->title ?? null ?></title>
 </head>
 <body>
     <div class="container">
         <div class="row">
             <header>
-                <ul class="menu-">
+                <ul class="menu">
+                    <li class="menu-item-"><a href="/admin">Admin</a></li>
                     <li class="menu-item-"><a href="/">Main</a></li>
                     <li class="menu-item-"><a href="/page">Page</a></li>
                     <li class="menu-item-"><a href="/posts">Posts</a></li>
@@ -26,7 +25,7 @@
                 <h1>MAIN</h1>
                 <h3>Header</h3>
             </header>
-            <h4>Current view file is "<?= __FILE__; ?>"</h4>
+            <h4>Current view file is "<?= __FILE__ ?>"</h4>
             <div class="content">
                 <?= $content; ?>
             </div>
@@ -36,6 +35,5 @@
         </div>
     
 <?= $this->putScripts(); ?>
-
 </body>
 </html>
