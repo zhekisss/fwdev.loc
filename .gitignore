@@ -1,3 +1,4 @@
 tmp/cache/*
 Public/img/*
 node_modules/*
+Public/dashboard/tinymce/*

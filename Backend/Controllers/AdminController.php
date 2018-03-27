@@ -2,8 +2,8 @@
 
 namespace Backend\Controllers;
 
-use Vendor\Core\Base\Controller;
 use Vendor\Core\Auth;
+use Vendor\Core\Base\Controller;
 use Vendor\Helper\Redirect;
 
 /**
@@ -16,10 +16,12 @@ class AdminController extends Controller
 
     public function __construct($route, $redirect = true)
     {
+
         if (method_exists($this, $route['action'] . 'Action')) {
             $this->auth = new Auth();
             parent::__construct($route);
             $auth = $this->auth->authorized;
+            $this->setTitle();
             if (!$this->auth->authorized && $redirect) {
                 Redirect::run('login');
                 exit;
@@ -30,7 +32,7 @@ class AdminController extends Controller
     public function indexAction()
     {
         $message = 'Вы авторизованы';
-        $this->set(compact('message'));
+        $this->setVar('message',$message);
     }
 
     public function logoutAction()
@@ -40,5 +42,12 @@ class AdminController extends Controller
         $auth->unAuthorize();
         Redirect::run('login');
         exit;
+    }
+
+    public function setTitle()
+    {
+        $page = new \StdClass;
+        $page->title = 'Добро пожаловать!';
+        $this->setVar('page', $page);
     }
 }

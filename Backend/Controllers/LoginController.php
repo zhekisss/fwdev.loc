@@ -23,7 +23,9 @@ class LoginController extends AdminController
     {
         $message = Session::get('falseLogin') ?? null;
         Session::delete('falseLogin');
-        $this->set(compact('message'));
+        $page = new \StdClass;
+        $page->title = 'Добро пожаловать';
+        $this->set(compact('message','page'));
     }
 
     public function LoginActionAction()

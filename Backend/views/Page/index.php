@@ -1,7 +1,7 @@
-<p><a href="/admin/page/new">Новая страница</a></p>
+<p><a class="z-depth-2 btn cyan darken-1" href="/admin/page/new">Новая страница</a></p>
 <?= $pageExists ?>
 
-<table class="table table-striped table-bordered">
+<table class="responsive-table highlight pages">
   <tr>
     <th>
       Название
@@ -22,7 +22,7 @@
 <?php foreach ($pages as $page): ?>
   <tr>
     <td>
-      <h3><?= $page->title ?></h3>
+      <h4><?= $page->title ?></h4>
     </td>
     <td>
       <p class="">
@@ -36,8 +36,8 @@
       <i><?= $page->link ?></i>
     </td>
     <td>
-      <a href="/<?= ENV ?>/page/delete?id=<?= $page->id ?>">Удалить</a>
-      <a href="/<?= ENV . '/page/edit?id=' . $page->id ?>">Редактировать</a>
+      <p><a class="z-depth-2 btn cyan darken-1" href="/<?= ENV ?>/page/delete?id=<?= $page->id ?>">Удалить</a></p>
+      <p><a class="z-depth-2 btn cyan darken-1" href="/<?= ENV . '/page/edit?id=' . $page->id ?>">Редактировать</a></p>
     </td>
 </tr>
 <?php endforeach ?>

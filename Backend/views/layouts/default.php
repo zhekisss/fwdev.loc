@@ -9,9 +9,9 @@
 </head>
 
 <body>
-<h3>DEFAULT</h3>
+<h1>DEFAULT</h1>
 
-  <?= $content ?>
+  <?=$content?>
 
 </body>
 

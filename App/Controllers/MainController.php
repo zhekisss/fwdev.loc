@@ -62,7 +62,7 @@ class MainController extends AppController
 
     public function viewAction()
     {
-        $this->view = $this->route['alias'] ?? '';
+        $this->view = 'view' ?? '';
         $link = $this->route['alias'];
 
         if ($page = \R::findOne('main_pages', 'WHERE link=?', [$link])) {

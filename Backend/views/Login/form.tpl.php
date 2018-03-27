@@ -9,7 +9,7 @@
 </p>
 <p>
     <label for="password">password</label>
-    <input type="password" name="password" required />
+    <input type="password" placeholder="Пароль" name="password" required />
 </p>
 <p>
     <input type="submit" name="" placeholder="Отправить" required />

@@ -106,4 +106,9 @@ abstract class Controller
 
         return null;
     }
+
+    public function setVar($var, $value)
+    {
+        $this->vars[$var] = $value;
+    }
 }
