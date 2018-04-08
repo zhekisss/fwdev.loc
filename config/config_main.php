@@ -7,3 +7,4 @@ define('CACHE', dirname(__DIR__) . '/tmp/cache');
 define('LAYOUT', 'default');
 define('ENV','user');
 define('NAME_SPACE','App\\');
+define('DEBUG', true);

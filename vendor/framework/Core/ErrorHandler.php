@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor;
+namespace Vendor\Core;
 
 class ErrorHandler
 {
@@ -22,12 +22,7 @@ class ErrorHandler
         error_log("[" . date('Y-m-d H:i:s') . "] Текст ошибки: {$message} | Файл: {$file} | Строка: {$line}\n=================\n", 3, ROOT . '/tmp/errors.log');
     }
 
-    protected function displayError($errno, $errstr, $errfile, $errline, $responce = 404){
-        http_response_code($responce);
-        if($responce == 404 && !DEBUG){
-            require WWW . '/errors/404.php';
-            die;
-        }
+    protected function displayError($errno, $errstr, $errfile, $errline){
         if(DEBUG){
             require WWW . '/errors/dev.php';
         }else{

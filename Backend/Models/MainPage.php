@@ -2,7 +2,7 @@
 
 namespace Backend\Models;
 
-class Page extends AdminModel
+class MainPage extends AdminModel
 {
     protected $table = 'page';
 }
