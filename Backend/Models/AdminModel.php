@@ -6,9 +6,8 @@ use Vendor\Core\Base\Model;
 
 class AdminModel extends Model
 {
-    public function __construct($table = null)
-    {
-        $this->table = $table ?? 'page';
+    public function __construct()
+    {        
         parent::__construct();
         \R::dispense($this->table);
     }

@@ -2,6 +2,10 @@
 
 namespace Backend\Controllers;
 
+use Backend\Model\Page;
+use Vendor\Helper\Redirect;
+use Vendor\Helper\Session;
+
 class MainPageController extends AdminController
 {
     public function __construct($route)
