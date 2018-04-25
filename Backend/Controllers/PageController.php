@@ -35,9 +35,8 @@ class PageController extends AdminController
      */
     public function saveAction()
     {
-        $this->view = '';
-        $req = $this->reg->get('req');
-        $params = $req->post;
+        $this->view = '';        
+        $params = $this->reg->get('req')->post;
         $params['link'] = $this->reg->get('str')->translit($params['title']);
         $params['content'] = str_replace(["\r\n", "\r", "\n"], "<br>", $params['content']); 
         $page = $this->model->getPageByLink($params['link']);

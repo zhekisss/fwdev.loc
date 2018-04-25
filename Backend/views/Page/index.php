@@ -1,7 +1,7 @@
 <p><a class="z-depth-2 btn cyan darken-1" href="/admin/page/new">Новая страница</a></p>
 <?= $pageExists ?>
 
-<table class="responsive-table highlight pages">
+<table class="table pages table-hover table-bordered">
   <tr>
     <th>
       Название
@@ -36,8 +36,8 @@
       <i><?= $page->link ?></i>
     </td>
     <td>
-      <p><a class="z-depth-2 btn cyan darken-1" href="/<?= ENV ?>/page/delete?id=<?= $page->id ?>">Удалить</a></p>
-      <p><a class="z-depth-2 btn cyan darken-1" href="/<?= ENV . '/page/edit?id=' . $page->id ?>">Редактировать</a></p>
+      <p><a class="z-depth-2 cyan btn darken-1" href="/<?= ENV ?>/page/delete?id=<?= $page->id ?>">Удалить</a></p>
+      <p><a class="z-depth-2 cyan btn darken-1" href="/<?= ENV . '/page/edit?id=' . $page->id ?>">Редактировать</a></p>
     </td>
 </tr>
 <?php endforeach ?>
