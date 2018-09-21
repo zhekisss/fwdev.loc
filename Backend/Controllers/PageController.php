@@ -38,7 +38,7 @@ class PageController extends AdminController
         $this->view = '';        
         $params = $this->reg->get('req')->post;
         $params['link'] = $this->reg->get('str')->translit($params['title']);
-        $params['content'] = str_replace(["\r\n", "\r", "\n"], "<br>", $params['content']); 
+        // $params['content'] = str_replace(["\r\n", "\r", "\n"], "<br>", $params['content']); 
         $page = $this->model->getPageByLink($params['link']);
         if ($page && $params['action'] === 'new') {
             Session::set('pageExists', '<p class="text-danger"><b>Не возможно создать. Страница с таким названием уже существует.</b></p>');

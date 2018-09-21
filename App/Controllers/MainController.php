@@ -28,15 +28,15 @@ class MainController extends AppController
         // $posts = $cachePost->get('posts');
 
         // if (!$posts ?? null) {
-            // $posts = \R::findAll('page');
+        // $posts = \R::findAll('page');
 
-            // $postsArr = $this->bean2Arr($posts);
+        // $postsArr = $this->bean2Arr($posts);
 
-            // $cachePost->set('posts', $posts);
+        // $cachePost->set('posts', $posts);
         // }
-
-        $page = new \StdClass;
-        $page->title = 'MAIN';
+        $page = (object) ['title' => 'MAIN'];
+        // $page = new \StdClass;
+        // $page->title = 'MAIN';
         $this->set(compact('posts', 'postsArr', 'form', 'page'));
     }
 

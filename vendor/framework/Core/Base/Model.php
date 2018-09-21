@@ -5,8 +5,7 @@ namespace Vendor\Core\Base;
 use Vendor\Core\Db;
 
 /**
- * Абстрактный класс модлели
- * @var [type]
+ * Абстрактный класс модлели 
  */
 abstract class Model
 {

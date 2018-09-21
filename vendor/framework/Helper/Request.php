@@ -59,7 +59,7 @@ class Request
 
     public function getSession($key)
     {
-        return $this->session[$key] ?? fasle;
+        return $this->session[$key] ?? false;
     }
 
     public function setSession($key, $value)
