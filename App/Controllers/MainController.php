@@ -47,7 +47,7 @@ class MainController extends AppController
             $post = $this->cache->get('post');
 
             if (!$post) {
-                $post = \R::findOne('page', "id={$_POST['id']}")->export();
+                $post = \R::findOne('page', "id={$this->reg->request->post['id']}")->export();
 
                 $this->cache->set('post', $post);
             }
