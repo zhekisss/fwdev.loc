@@ -14,6 +14,7 @@ require_once '../vendor/framework/libs/functions.php';
 //Получение запроса из адресной строки браузера
 $query = strtolower(rtrim($_SERVER['QUERY_STRING'], '/'));
 
+class_alias("Vendor\\Core\\Registry","Reg");
 
 
 // Проверка первого слова из строки браузера до символа "/"
