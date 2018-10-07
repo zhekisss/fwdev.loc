@@ -59,7 +59,8 @@ abstract class Controller
         if (method_exists($this, $route['action'].'Action')) {
             $classModel = NAME_SPACE . "Models\\" . $route['controller'];
             // Создание объекта модели по имени контроллера
-            $this->model = class_exists($classModel) ? new $classModel : null;
+            $env = ENV === "admin" ? "Backend" : "App";
+            $this->model = class_exists($classModel) ? new $classModel : new "{$env}\\Models\\DefaultModel";
             $this->reg = Registry::getInstance();
             $this->route = $route;
             $this->view = $route['action'];

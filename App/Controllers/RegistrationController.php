@@ -2,21 +2,30 @@
 
 namespace App\Controllers;
 
-class RegistrationController extends Appcontroller
+class RegistrationController extends AppController
 {
       public function __construct(){
-
+        parent:__construct($route);
       }
 
-      public registrationAction(){
-
-      }
-
-      public function FunctionName($value='')
+      public indexAction()
       {
-        // code...
+        echo "string";
       }
 
+      public failedAction()
+      {
+        echo "string";
+      }
 
+      public successAction()
+      {
+        echo "string";
+      }
+
+      public function validate()
+      {
+        return true;
+      }
 
 }

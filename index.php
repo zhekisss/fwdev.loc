@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Класс для измерения времени выполнения скрипта или операций
  */
@@ -12,7 +12,7 @@ class Timer
     /**
      * Начало выполнения
      */
-    static function start()
+    public static function start()
     {
         self::$start = microtime(true);
     }
@@ -21,7 +21,7 @@ class Timer
      * Разница между текущей меткой времени и меткой self::$start
      * @return float
      */
-    static function finish()
+    public static function finish()
     {
         return microtime(true) - self::$start;
     }
@@ -31,4 +31,3 @@ $pass = 'mail@mail.ru123456789';
 
 $passHashed = password_hash($pass, PASSWORD_BCRYPT);
 echo $passHashed;
-
